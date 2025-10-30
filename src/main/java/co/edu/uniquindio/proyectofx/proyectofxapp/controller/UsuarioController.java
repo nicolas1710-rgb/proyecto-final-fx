@@ -44,6 +44,7 @@ public class UsuarioController {
     usuario.setIdentificacion(Integer.parseInt(txtIdentificacion.getText()));
     usuario.setTelefono(Integer.parseInt(txtTelefono.getText()));
     txtResultado.setText(usuario.toString());
+
     }
 
 }
