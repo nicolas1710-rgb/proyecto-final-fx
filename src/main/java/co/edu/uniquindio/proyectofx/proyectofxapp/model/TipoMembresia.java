@@ -14,7 +14,6 @@ package co.edu.uniquindio.proyectofx.proyectofxapp.model;
             this.precioTrimestral = trimestral;
             this.precioAnual = anual;
         }
-
         public double getPrecio(DuracionMembresia duracion) {
             switch (duracion) {
                 case MENSUAL:

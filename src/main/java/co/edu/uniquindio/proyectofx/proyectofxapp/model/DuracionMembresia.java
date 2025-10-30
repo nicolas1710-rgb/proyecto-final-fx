@@ -9,4 +9,5 @@ public enum DuracionMembresia {
         this.dias=dias;
     }
     public int getDias(){return this.dias;}
+    
 }

@@ -43,7 +43,6 @@
                         <ImageView fitHeight="232.0" fitWidth="162.0" layoutX="770.0" layoutY="-35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                                <Image url="@6412e10a-1915-4ad6-a9d0-1512e2b30163.png" />
-
                            </image>
                         </ImageView>
                         <Label layoutX="436.0" layoutY="72.0" text="Telefono:" />

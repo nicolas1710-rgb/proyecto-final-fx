@@ -43,7 +43,7 @@ package co.edu.uniquindio.proyectofx.proyectofxapp.model;
                     ", identificacion=" + identificacion +
                     ", edad=" + edad +
                     ", telefono=" + telefono +
-                    ", membresia=" + membresia +
+                    ", membresia= " + membresia +
                     ", duracion=" + duracion +
                     ", precioMembresia=" + precioMembresia +
                     '}';
