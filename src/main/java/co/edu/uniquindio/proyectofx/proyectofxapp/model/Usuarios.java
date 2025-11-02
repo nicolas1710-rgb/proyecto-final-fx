@@ -48,5 +48,6 @@ package co.edu.uniquindio.proyectofx.proyectofxapp.model;
                     ", precioMembresia=" + precioMembresia +
                     '}';
         }
+
     }
 

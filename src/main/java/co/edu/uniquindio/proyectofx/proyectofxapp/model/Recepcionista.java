@@ -21,7 +21,7 @@ public class Recepcionista {
     public int getContrasena(){ return contrasena;}
     public void setContraena(int contrasena){ this.contrasena=contrasena;}
 
-    public void RegistrarUsuario (Scanner sc, Gimnasio gimnasio) {
+    public void crearUsuarios (Scanner sc, Gimnasio gimnasio) {
         int identificacion;
         System.out.println("Ingrese la identificacion del usuario:");
         identificacion= sc.nextInt();

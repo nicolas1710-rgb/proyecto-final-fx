@@ -1,51 +1,24 @@
 package co.edu.uniquindio.proyectofx.proyectofxapp.controller;
-
+import co.edu.uniquindio.proyectofx.proyectofxapp.Factory.ModelFactory;
+import co.edu.uniquindio.proyectofx.proyectofxapp.model.DuracionMembresia;
+import co.edu.uniquindio.proyectofx.proyectofxapp.model.TipoMembresia;
 import co.edu.uniquindio.proyectofx.proyectofxapp.model.Usuarios;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 
+import java.util.List;
 
 public class UsuarioController {
-    @FXML
-    private Button btnAgregarUsuario;
-
-    @FXML
-    private ChoiceBox<?> optionDuracionMembresia;
-
-    @FXML
-    private ChoiceBox<?> optionMembresia;
-
-    @FXML
-    private TextField txtEdad;
-
-    @FXML
-    private TextField txtIdentificacion;
-
-    @FXML
-    private TextField txtNombre;
-
-    @FXML
-    private TextArea txtResultado;
-
-    @FXML
-    private TextField txtTelefono;
+    static ModelFactory modelFactory;
 
 
-
-@FXML
-    void onAgregarUsuario(ActionEvent event) {
-    Usuarios usuario = new Usuarios();
-    usuario.setNombre(txtNombre.getText());
-    usuario.setEdad(Integer.parseInt( txtEdad.getText()));
-    usuario.setIdentificacion(Integer.parseInt(txtIdentificacion.getText()));
-    usuario.setTelefono(Integer.parseInt(txtTelefono.getText()));
-    txtResultado.setText(usuario.toString());
-
+    public UsuarioController(){
+        modelFactory = ModelFactory.getInstancia();
     }
 
-}
+    public List<Usuarios> obtenerUsuarios() {
+        return modelFactory.obtenerUsuarios();
+    }
 
+    public static Usuarios crearUsuario(String nombre, long identificacion, int edad, long telefono, TipoMembresia membresia, DuracionMembresia duracion) {
+        return modelFactory.crearUsuarios(nombre,  identificacion,  edad,  telefono,  membresia,  duracion);
+    }
+}
