@@ -94,5 +94,35 @@ public class Gimnasio {
         }
         return usuarioEncontrado;
     }
+    public boolean actualizarUsuario(long identificacion, String nombre, int edad, long telefono, TipoMembresia membresia, DuracionMembresia duracion) {
+        Usuarios usuario = obtenerUsuario(identificacion);
+        if (usuario != null) {
+            usuario.setNombre(nombre);
+            usuario.setEdad(edad);
+            usuario.setTelefono(telefono);
+            usuario.setMembresia(membresia);
+            usuario.setDuracion(duracion);
+            return true;
+        }
+        return false;
+    }
+    public boolean eliminarUsuario(long identificacion) {
+        Usuarios usuarioAEliminar = obtenerUsuario(identificacion);
+        if (usuarioAEliminar != null) {
+            listaUsuarios.remove(usuarioAEliminar);
+            return true;
+        }
+        return false;
+    }
+    public boolean ValidarRecepcionista( String usuario, int contraseña) {
+        boolean valido=false;
+        for( Recepcionista r: getListaRecepcionistas()){
+            if(r.getUsuario().equalsIgnoreCase(usuario) && r.getContrasena()== contraseña){
+                valido=true;
+            }
+
+        }
+        return valido;
+    }
 }
 

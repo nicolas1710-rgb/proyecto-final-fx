@@ -21,4 +21,12 @@ public class UsuarioController {
     public static Usuarios crearUsuario(String nombre, long identificacion, int edad, long telefono, TipoMembresia membresia, DuracionMembresia duracion) {
         return modelFactory.crearUsuarios(nombre,  identificacion,  edad,  telefono,  membresia,  duracion);
     }
+    public boolean actualizarUsuario(long identificacion, String nombre, int edad, long telefono, TipoMembresia membresia, DuracionMembresia duracion) {
+        return modelFactory.actualizarUsuario(identificacion, nombre, edad, telefono, membresia, duracion);
+    }
+    public boolean eliminarUsuario(long identificacion) {
+        return modelFactory.eliminarUsuario(identificacion);
+    }
+
+
 }

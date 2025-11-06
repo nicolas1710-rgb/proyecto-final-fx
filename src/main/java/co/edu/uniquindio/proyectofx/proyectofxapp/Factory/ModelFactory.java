@@ -31,4 +31,15 @@ public class ModelFactory {
         return gimnasio.crearUsuarios( nombre,  identificacion,  edad,  telefono,  membresia,  duracion);
 
     }
+    public boolean actualizarUsuario(long identificacion, String nombre, int edad, long telefono, TipoMembresia membresia, DuracionMembresia duracion) {
+        return gimnasio.actualizarUsuario(identificacion, nombre, edad, telefono, membresia, duracion);
+    }
+    public boolean eliminarUsuario(long identificacion) {
+        return gimnasio.eliminarUsuario(identificacion);
+    }
+    public boolean ValidarRecepcionista(String usuario, int contraseña){
+        return gimnasio.ValidarRecepcionista(usuario, contraseña);
+    }
+
+
 }

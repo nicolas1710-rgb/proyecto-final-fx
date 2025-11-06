@@ -1,6 +1,8 @@
 module co.edu.uniquindio.proyectofx.proyectofxapp {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.desktop;
+    requires java.sql;
 
     opens co.edu.uniquindio.proyectofx.proyectofxapp to javafx.fxml;
     exports co.edu.uniquindio.proyectofx.proyectofxapp;

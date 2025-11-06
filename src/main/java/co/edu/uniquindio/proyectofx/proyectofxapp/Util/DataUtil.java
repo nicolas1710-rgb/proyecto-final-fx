@@ -5,8 +5,9 @@ import co.edu.uniquindio.proyectofx.proyectofxapp.model.*;
 public class DataUtil {
     public static Gimnasio inicializarDatos() {
         Gimnasio gimnasio = new Gimnasio();
-        Recepcionista recepcionista = new Recepcionista("Santiago", 123);
+        Recepcionista recepcionista = new Recepcionista("nicolas", 123);
         gimnasio.getListaRecepcionistas().add(recepcionista);
+        gimnasio.getListaRecepcionistas().add(new Recepcionista("admin", 1234));
         Administrador administrador = new Administrador("Admin", 12345);
         gimnasio.setAdministrador(administrador);
         Usuarios usuario= new Usuarios("Pedro",100, 18,30549271,100000);

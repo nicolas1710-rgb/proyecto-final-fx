@@ -21,7 +21,14 @@ public class UsuarioViewController {
 
     @FXML
     private Button btnAgregarUsuario;
+    @FXML
+    private TextField txtBuscar;
 
+    @FXML
+    private Button btnActualizar;
+
+    @FXML
+    private Button btnEliminar;
     @FXML
     private ChoiceBox<TipoMembresia> optionMembresia;
 
@@ -63,17 +70,33 @@ public class UsuarioViewController {
     @FXML
     private TextArea txtResultado;
 
+
     @FXML
     void onAgregarUsuario(ActionEvent event) {
         crearUsuario();
     }
+    @FXML
+    void ActualizarUsuario(ActionEvent event) {
+        Actualizarusuario();
+
+    }
 
     @FXML
+    void EliminarUsuario(ActionEvent event) {
+        Eliminarusuario();
+    }
+
+        @FXML
     void initialize() {
         usuarioController = new UsuarioController();
         initChoiceBoxes();
         initView();
-    }
+        txtBuscar.textProperty().addListener((observable, oldValue, newValue) -> {
+            buscarUsuarioPorTexto(newValue);
+            });
+        }
+
+
 
     private void initChoiceBoxes() {
         optionMembresia.setItems(FXCollections.observableArrayList(TipoMembresia.values()));
@@ -169,4 +192,73 @@ public class UsuarioViewController {
         Optional<ButtonType> action = alert.showAndWait();
         return action.get() == ButtonType.OK;
     }
+    private void buscarUsuarioPorTexto(String texto) {
+        if (texto == null || texto.isEmpty()) return;
+
+        for (Usuarios u : listaUsuarios) {
+            if (String.valueOf(u.getIdentificacion()).equals(texto)) {
+                tableUsuario.getSelectionModel().select(u);
+                tableUsuario.scrollTo(u);
+                return;
+            }
+        }
+    }
+    private void actualizarTablaUsuarios() {
+        // Vacía la lista actual
+        listaUsuarios.clear();
+
+        // Vuelve a obtener la lista actualizada desde el controlador
+        listaUsuarios.addAll(usuarioController.obtenerUsuarios());
+
+        // Refresca la tabla visualmente
+        tableUsuario.refresh();
+    }
+
+    @FXML
+     void Eliminarusuario() {
+        Usuarios usuarioSeleccionado = tableUsuario.getSelectionModel().getSelectedItem();
+
+        if (usuarioSeleccionado == null) {
+            mostrarMensaje("Advertencia", null, "Selecciona un usuario para eliminar.", Alert.AlertType.WARNING);
+            return;
+        }
+
+        if (usuarioController.eliminarUsuario(usuarioSeleccionado.getIdentificacion())) {
+            mostrarMensaje("Éxito", null, "Usuario eliminado correctamente.", Alert.AlertType.INFORMATION);
+            actualizarTablaUsuarios();
+        } else {
+            mostrarMensaje("Error", null, "No se pudo eliminar el usuario.", Alert.AlertType.ERROR);
+        }
+    }
+
+    @FXML
+     void Actualizarusuario() {
+        try {
+            long identificacion = Long.parseLong(txtIdentificacion.getText());
+            String nombre = txtNombre.getText();
+            int edad = Integer.parseInt(txtEdad.getText());
+            long telefono = Long.parseLong(txtTelefono.getText());
+            TipoMembresia membresia = optionMembresia.getValue();
+            DuracionMembresia duracion = optionDuracionMembresia.getValue();
+
+            UsuarioController usuarioController = new UsuarioController();
+
+            boolean actualizado = usuarioController.actualizarUsuario(identificacion, nombre, edad, telefono, membresia, duracion);
+
+            if (actualizado) {
+                mostrarMensaje("Éxito", "Usuario actualizado correctamente");
+                actualizarTablaUsuarios();
+            } else {
+                mostrarMensaje("Error", "No se encontró el usuario con esa identificación");
+            }
+
+        } catch (NumberFormatException e) {
+            mostrarMensaje("Error", "Datos numéricos inválidos. Verifica la información.");
+        }
+    }
+
+    private void mostrarMensaje(String éxito, String usuarioActualizadoCorrectamente) {
+    }
+
+
 }
