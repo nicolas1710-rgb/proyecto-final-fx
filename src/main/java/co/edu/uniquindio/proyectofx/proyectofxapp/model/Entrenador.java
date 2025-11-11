@@ -1,20 +1,20 @@
 package co.edu.uniquindio.proyectofx.proyectofxapp.model;
 
 public class Entrenador extends Usuarios {
-    private String especialidad;
     private double salario;
+    private TiposdeClases especialidad;
     public Entrenador(){}
-    public Entrenador(String especialidad, double salario,String nombre, long identificacion, int edad, long telefono) {
-        super(nombre, identificacion, edad, telefono,0);
+    public Entrenador(TiposdeClases especialidad, double salario,String nombre, long identificacion, int edad, long telefono) {
+        super(nombre, identificacion, edad, telefono);
         this.especialidad = especialidad;
         this.salario=salario;
     }
 
-    public String getEspecialidad() {
+    public TiposdeClases getEspecialidad() {
         return especialidad;
     }
 
-    public void setEspecialidad(String especialidad) {
+    public void setEspecialidad(TiposdeClases especialidad) {
         this.especialidad = especialidad;
     }
 

@@ -71,8 +71,7 @@ public class Recepcionista {
             DuracionMembresia duracionSeleccionada= duracion[opcionDuracion-1];
 
             double precio=tipoSeleccionado.getPrecio(duracionSeleccionada);
-            user.setMembresia(tipoSeleccionado);
-            user.setPrecioMembresia(precio);
+            user.setMembresia(tipoSeleccionado);;
             gimnasio.getListaUsuarios().add(user);
             System.out.println("Usuario creado correctamente.");
             System.out.println("Tipo de membresía: " + tipoSeleccionado);

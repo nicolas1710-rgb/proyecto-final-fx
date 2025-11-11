@@ -11,13 +11,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane opacity="0.93" prefHeight="584.0" prefWidth="826.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.proyectofx.proyectofxapp.controller.pantallaPrincipalController">
+<AnchorPane fx:id="mainPane" opacity="0.93" prefHeight="584.0" prefWidth="826.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.proyectofx.proyectofxapp.ViewController.PantallaPrincipalView">
     <stylesheets>
         <URL value="@estilos.css" />
     </stylesheets>
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ebebeb00" height="55.0" layoutX="177.0" layoutY="37.0" stroke="#a18416" strokeType="INSIDE" width="479.0" />
-      <Text fill="WHITE" layoutX="226.0" layoutY="81.0" stroke="#3c3434" strokeLineCap="ROUND" strokeType="OUTSIDE" text="GYM" textAlignment="CENTER" wrappingWidth="366.13671875">
+      <Text fill="WHITE" layoutX="226.0" layoutY="81.0" stroke="#3c3434" strokeLineCap="ROUND" strokeType="OUTSIDE" text="GYM UQ FIT" textAlignment="CENTER" wrappingWidth="366.13671875">
          <font>
             <Font name="Times New Roman Bold" size="50.0" />
          </font>
@@ -26,12 +26,12 @@
       <Line endX="-100.0" endY="-313.0" layoutX="901.0" layoutY="350.0" startX="-100.0" startY="189.0" stroke="WHITE" />
       <Line endX="-100.0" endY="-313.0" layoutX="141.0" layoutY="334.0" startX="642.0" startY="-313.0" stroke="WHITE" />
       <Line endX="638.0" endY="189.0" layoutX="139.0" layoutY="360.0" startX="-100.0" startY="189.0" stroke="WHITE" />
-      <ImageView fitHeight="409.0" fitWidth="410.0" layoutX="199.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="409.0" fitWidth="410.0" layoutX="204.0" layoutY="129.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@ChatGPT Image 1 nov 2025, 17_36_21.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnRecepcionista" layoutX="245.0" layoutY="250.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="109.0" text="Recepcionista" textOverrun="LEADING_ELLIPSIS">
+      <Button fx:id="btnRecepcionista" layoutX="177.0" layoutY="146.0" mnemonicParsing="false" onAction="#ejecutarAccion" prefHeight="39.0" prefWidth="109.0" text="Recepcionista" textOverrun="LEADING_ELLIPSIS">
          <font>
             <Font name="Times New Roman Bold" size="16.0" />
          </font>
@@ -39,32 +39,32 @@
             <Cursor fx:constant="NONE" />
          </cursor>
       </Button>
-      <Button fx:id="btnUsuario" layoutX="470.0" layoutY="269.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="87.0" text="Usuario">
+      <Button fx:id="btnUsuario" layoutX="526.0" layoutY="147.0" mnemonicParsing="false" onAction="#ejecutarAccion" prefHeight="26.0" prefWidth="87.0" text="Usuario">
          <font>
             <Font size="7.0" />
          </font></Button>
-      <Button fx:id="btnAdministrador" layoutX="355.0" layoutY="298.0" mnemonicParsing="false" text="Administrador">
+      <Button fx:id="btnAdministrador" layoutX="359.0" layoutY="129.0" mnemonicParsing="false" onAction="#ejecutarAccion" text="Administrador">
          <font>
             <Font size="8.0" />
          </font></Button>
       <ImageView fitHeight="24.0" fitWidth="87.0" layoutX="17.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../../../../../../../Downloads/ChatGPT%20Image%201%20nov%202025,%2018_20_16.png" />
+            <Image url="@ChatGPT Image 1 nov 2025, 18_20_16.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="24.0" fitWidth="87.0" layoutX="17.0" layoutY="538.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../../../../../../../Downloads/ChatGPT%20Image%201%20nov%202025,%2018_20_16.png" />
+            <Image url="@ChatGPT Image 1 nov 2025, 18_20_16.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="24.0" fitWidth="87.0" layoutX="784.0" layoutY="538.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../../../../../../../Downloads/ChatGPT%20Image%201%20nov%202025,%2018_20_16.png" />
+            <Image url="@ChatGPT Image 1 nov 2025, 18_20_16.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="24.0" fitWidth="87.0" layoutX="784.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../../../../../../../Downloads/ChatGPT%20Image%201%20nov%202025,%2018_20_16.png" />
+            <Image url="@ChatGPT Image 1 nov 2025, 18_20_16.png" />
          </image>
       </ImageView>
    </children>

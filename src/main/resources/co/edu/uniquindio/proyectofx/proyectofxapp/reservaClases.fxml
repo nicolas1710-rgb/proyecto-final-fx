@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.proyectofx.proyectofxapp.ViewController.reservaClasesView">
+   <children>
+      <AnchorPane minHeight="0.0" minWidth="0.0" opacity="0.92" prefHeight="595.0" prefWidth="923.0" style="-fx-background-color: black;">
+         <children>
+            <TableView fx:id="tableTiposDeClases" layoutX="22.0" layoutY="359.0" prefHeight="200.0" prefWidth="882.0">
+               <columns>
+                  <TableColumn fx:id="tcTiposCLases" prefWidth="75.0" text="TIPOS DE CLASES" />
+               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+            <Text fill="WHITE" fontSmoothingType="LCD" layoutX="258.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RESERVA DE CLASES" textAlignment="CENTER" wrappingWidth="395.13671875">
+               <font>
+                  <Font name="Felix Titling" size="34.0" />
+               </font>
+               <effect>
+                  <Bloom />
+               </effect>
+            </Text>
+            <TextField fx:id="txtIdClase" layoutX="334.0" layoutY="185.0" prefHeight="25.0" prefWidth="243.0" />
+            <Label layoutX="335.0" layoutY="131.0" text="INGRESE EL ID DEL USUARIO :" textFill="WHITE">
+               <font>
+                  <Font name="Felix Titling" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="226.0" layoutY="263.0" text="Seleccione la clase la cual desea agregar al usuario" textFill="WHITE">
+               <font>
+                  <Font name="Felix Titling" size="17.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="232.0" fitWidth="162.0" layoutX="745.0" layoutY="-22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@6412e10a-1915-4ad6-a9d0-1512e2b30163.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

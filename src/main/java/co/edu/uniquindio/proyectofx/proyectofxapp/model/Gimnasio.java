@@ -19,6 +19,7 @@ public class Gimnasio {
         this.listaClases = new ArrayList<>();
     }
 
+
     public Administrador getAdministrador() {
         return administrador;
     }
@@ -94,7 +95,7 @@ public class Gimnasio {
         }
         return usuarioEncontrado;
     }
-    public boolean actualizarUsuario(long identificacion, String nombre, int edad, long telefono, TipoMembresia membresia, DuracionMembresia duracion) {
+    public boolean actualizarUsuario(long identificacion, String nombre, int edad, long telefono, TipoMembresia membresia, DuracionMembresia duracion,Clases clase) {
         Usuarios usuario = obtenerUsuario(identificacion);
         if (usuario != null) {
             usuario.setNombre(nombre);
@@ -102,6 +103,7 @@ public class Gimnasio {
             usuario.setTelefono(telefono);
             usuario.setMembresia(membresia);
             usuario.setDuracion(duracion);
+            usuario.setClase(clase);
             return true;
         }
         return false;
@@ -123,6 +125,68 @@ public class Gimnasio {
 
         }
         return valido;
+    }
+    public boolean ValidarAdmin(String usuario, int contraseña){
+        boolean valido=false;
+        if(administrador.getUsuario().equalsIgnoreCase(usuario) && administrador.getContrasena()== contraseña){
+            valido=true;
+        }
+        return valido;
+    }
+    public Entrenador crearEntrenador(String nombre, long identificacion, int edad, long telefono, TiposdeClases especialidad, double salario ) {
+        Entrenador entrenadorEncontrado=obtenerEntrenador(identificacion);
+        if (entrenadorEncontrado == null) {
+          Entrenador  entrenador = new Entrenador();
+            entrenador.setNombre(nombre);
+            entrenador.setIdentificacion(identificacion);
+            entrenador.setEdad(edad);
+            entrenador.setTelefono(telefono);
+            entrenador.setEspecialidad(especialidad);
+            entrenador.setSalario(salario);
+            getListaEntrenadores().add(entrenador);
+            return entrenador;
+        }else{
+            return null;
+        }
+    }
+
+    private Entrenador obtenerEntrenador(long identificacion){
+        Entrenador entrenadorEncontrado=null;
+        for(Entrenador entrenador: getListaEntrenadores()){
+            if(entrenador.getIdentificacion()==identificacion){
+                entrenadorEncontrado=entrenador;
+                break;
+            }
+        }
+        return entrenadorEncontrado;
+    }
+    public boolean actualizarEntrenador(long identificacion, String nombre, int edad, long telefono, TiposdeClases especialidad, double salario) {
+       Entrenador entrenador= obtenerEntrenador(identificacion);
+        if (entrenador != null) {
+            entrenador.setNombre(nombre);
+            entrenador.setEdad(edad);
+            entrenador.setTelefono(telefono);
+            entrenador.setEspecialidad(especialidad);
+            entrenador.setSalario(salario);
+            return true;
+        }
+        return false;
+    }
+    public boolean eliminarEntrenador(long identificacion) {
+        Entrenador entrenadorAEliminar = obtenerEntrenador(identificacion);
+        if (entrenadorAEliminar != null) {
+            listaEntrenadores.remove(entrenadorAEliminar);
+            return true;
+        }
+        return false;
+    }
+    public Usuarios agregarClaseAUsuario (long identificacion, Clases clases){
+        Usuarios usuarioEncontrado = obtenerUsuario(identificacion);
+        if(usuarioEncontrado != null){
+            usuarioEncontrado.setClase(clases);
+            listaClases.add(clases);
+        }
+        return usuarioEncontrado;
     }
 }
 

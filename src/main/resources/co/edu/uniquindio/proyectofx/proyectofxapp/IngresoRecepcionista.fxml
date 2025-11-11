@@ -47,5 +47,6 @@
          </image>
       </ImageView>
       <Button fx:id="btonIngresoRecep" layoutX="383.0" layoutY="369.0" mnemonicParsing="false" onAction="#ValidarIngresoRecepcionista" text="INGRESAR" />
+      <Button layoutX="-1.0" layoutY="11.0" mnemonicParsing="false" onAction="#volverAPantallaPrincipal" text="REGRESAR" />
    </children>
 </AnchorPane>

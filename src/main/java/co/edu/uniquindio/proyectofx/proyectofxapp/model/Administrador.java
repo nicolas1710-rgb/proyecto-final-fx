@@ -77,7 +77,6 @@ public class Administrador  {
 
             double precio=tipoSeleccionado.getPrecio(duracionSeleccionada);
             user.setMembresia(tipoSeleccionado);
-            user.setPrecioMembresia(precio);
             gimnasio.getListaUsuarios().add(user);
             System.out.println("Usuario creado correctamente.");
             System.out.println("Tipo de membresía: " + tipoSeleccionado);
@@ -115,7 +114,7 @@ public class Administrador  {
             entrenador.setTelefono(sc.nextLong());
             sc.nextLine();
             System.out.println("Ingrese la especialidad del entrenador");
-            entrenador.setEspecialidad(sc.nextLine());
+
             System.out.println("Ingrese el salario del entrenador");
             entrenador.setSalario(sc.nextDouble());
             gimnasio.getListaEntrenadores().add(entrenador);
@@ -136,15 +135,6 @@ public class Administrador  {
         return entrenadorEncontrado;
     }
 
-    public Clases buscarNombreClases (String nombre, Gimnasio gimnasio){
-        Clases nombreClases = null;
-        for (Clases clases : gimnasio.getListaClases()){
-            if (clases.getNombre().equalsIgnoreCase(nombre)){
-                nombreClases = clases;
-            }
-        }
-        return nombreClases;
-    }
 
     public void modificarEntrenador(Scanner sc, Gimnasio gimnasio) {
         int identificacion;
@@ -169,7 +159,7 @@ public class Administrador  {
                         entrenador.setTelefono(sc.nextLong());
                         sc.nextLine();
                         System.out.println("Ingrese la especialidad del entrenador");
-                        entrenador.setEspecialidad(sc.nextLine());
+
                         System.out.println("Ingrese el salario del entrenador");
                         entrenador.setSalario(sc.nextDouble());
                         System.out.println(" Entrenador actualizado correctamente");
@@ -230,16 +220,6 @@ public class Administrador  {
             }
         }
 
-        System.out.print("Ingrese el nombre de la clase: ");
-        String nombreClase = sc.nextLine();
-        Clases claseEncontrada = buscarNombreClases(nombreClase, gimnasio);
 
-        if (claseEncontrada == null) {
-            System.out.println("Clase no existente.");
-            return;
-        }
-
-        claseEncontrada.setEntrenador(entrenadorEncontrado);
-        System.out.println("La clase " + claseEncontrada.getNombre() + " fue asignada al entrenador: " + entrenadorEncontrado.getNombre());
     }
 }

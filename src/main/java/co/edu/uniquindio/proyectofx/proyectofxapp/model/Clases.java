@@ -1,43 +1,33 @@
 package co.edu.uniquindio.proyectofx.proyectofxapp.model;
 
 public class Clases {
-    private String nombre;
+    private Usuarios usuario;
     private TiposdeClases tipo;
-    private String horario;
-    private int cupo_Maximo;
     private Entrenador entrenador;
 
-    public Clases(String nombre, TiposdeClases tipo, String horario, int cupo_Maximo) {
-        this.nombre = nombre;
+    public Clases() {
+    }
+
+    public Clases(TiposdeClases tipo,Entrenador entrenador,Usuarios usuario) {
+        this.entrenador = entrenador;
         this.tipo = tipo;
-        this.horario = horario;
-        this.cupo_Maximo = cupo_Maximo;
+        this.usuario = usuario;
     }
 
     public TiposdeClases getTipo() {
         return tipo;
     }
 
+    public Usuarios getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuarios usuario) {
+        this.usuario = usuario;
+    }
+
     public void setTipo(TiposdeClases tipo) {
         this.tipo = tipo;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-
-
-    public String getHorario() {
-        return horario;
-    }
-
-    public void setHorario(String horario) {
-        this.horario = horario;
     }
 
     public Entrenador getEntrenador() {
@@ -48,23 +38,5 @@ public class Clases {
         this.entrenador = entrenador;
     }
 
-    public int getCupo_Maximo() {
-        return cupo_Maximo;
-    }
 
-    public void setCupo_Maximo(int cupo_Maximo) {
-        this.cupo_Maximo = cupo_Maximo;
-    }
-
-    @Override
-    public String toString() {
-        return "Clases{" +
-                "nombre='" + nombre + '\'' +
-                ", tipo=" + tipo +
-                ", horario='" + horario + '\'' +
-                ", cupo_Maximo=" + cupo_Maximo +
-                ", entrenador=" + entrenador +
-                '}';
-    }
 }
-

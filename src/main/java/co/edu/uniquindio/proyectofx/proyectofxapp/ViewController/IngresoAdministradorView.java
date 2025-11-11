@@ -1,10 +1,10 @@
 package co.edu.uniquindio.proyectofx.proyectofxapp.ViewController;
 
+import co.edu.uniquindio.proyectofx.proyectofxapp.controller.IngresoAdminController;
 import co.edu.uniquindio.proyectofx.proyectofxapp.controller.IngresoRecepController;
-import co.edu.uniquindio.proyectofx.proyectofxapp.model.Recepcionista;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -12,26 +12,23 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import javafx.event.ActionEvent;
 import java.io.IOException;
-import java.sql.SQLXML;
 
-public class IngresoRecepcionistaView {
-    private IngresoRecepController ingresoRecepController;
+public class IngresoAdministradorView {
+    IngresoAdminController adminController;
     @FXML
-    private TextField TxtUsuarioRecep;
-
-    @FXML
-    private Button btonIngresoRecep;
+    private TextField TxtUsuarioAdmin;
 
     @FXML
-    private TextField txtContraseñaRecep;
+    private Button btonIngresoAdmin;
 
     @FXML
-    void ValidarIngresoRecepcionista(ActionEvent event) {
-        validarIngresoRecepcionista( event);
+    private TextField txtContraseñaAdmin;
+
+    @FXML
+    void ValidarIngresoAdmin(ActionEvent event) {
+        validarIngresoAdmin(event);
     }
-
     @FXML
     void volverAPantallaPrincipal(ActionEvent event) {
         try {
@@ -59,13 +56,14 @@ public class IngresoRecepcionistaView {
         alert.setContentText(mensaje);
         alert.showAndWait();
     }
-    @FXML
-    private void validarIngresoRecepcionista(ActionEvent event) {
-        try {
-            String usuario = TxtUsuarioRecep.getText();
-            int contrasena = Integer.parseInt(txtContraseñaRecep.getText());
 
-            boolean valido = ingresoRecepController.ValidarRecepcionista(usuario, contrasena);
+    @FXML
+    private void validarIngresoAdmin(ActionEvent event) {
+        try {
+            String usuario = TxtUsuarioAdmin.getText();
+            int contrasena = Integer.parseInt(txtContraseñaAdmin.getText());
+
+            boolean valido = adminController.ValidarAdmin(usuario, contrasena);
 
             if (valido) {
                 mostrarAlerta("Éxito", "Inicio de sesión correcto", Alert.AlertType.INFORMATION);
@@ -88,26 +86,21 @@ public class IngresoRecepcionistaView {
         alerta.setContentText(mensaje);
         alerta.showAndWait();
     }
-
     private void abrirVentanaPrincipal() throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/proyectofx/proyectofxapp/usuario.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/proyectofx/proyectofxapp/PanelAdmin.fxml"));
         Parent root = loader.load();
 
         Stage stage = new Stage();
-        stage.setTitle("Panel del Recepcionista");
+        stage.setTitle("Panel del admin");
         stage.setScene(new Scene(root));
         stage.show();
 
         // Cierra la ventana de login
-        Stage myStage = (Stage) this.TxtUsuarioRecep.getScene().getWindow();
+        Stage myStage = (Stage) this.TxtUsuarioAdmin.getScene().getWindow();
         myStage.close();
     }
-
     @FXML
     void initialize() {
-         ingresoRecepController = new IngresoRecepController();
+        adminController = new IngresoAdminController();
     }
 }
-
-
-

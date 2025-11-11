@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane layoutY="18.0" prefHeight="635.0" prefWidth="916.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.proyectofx.proyectofxapp.ViewController.ValidacionUsuarioView">
+   <children>
+      <Text fill="WHITE" layoutX="211.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VALIDACION USUARIO" textAlignment="CENTER" underline="true">
+         <font>
+            <Font name="SimSun" size="55.0" />
+         </font>
+         <effect>
+            <Bloom />
+         </effect>
+      </Text>
+      <TextField fx:id="txID" layoutX="434.0" layoutY="164.0" prefHeight="25.0" prefWidth="222.0" />
+      <Label layoutX="255.0" layoutY="165.0" text="Identificacion:" textFill="WHITE">
+         <font>
+            <Font name="SimSun" size="21.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tableUsuario" layoutX="32.0" layoutY="258.0" prefHeight="340.0" prefWidth="858.0">
+        <columns>
+          <TableColumn fx:id="tcNombre" prefWidth="75.0" text="Nombre" />
+          <TableColumn fx:id="tcID" prefWidth="104.0" text="ID" />
+            <TableColumn fx:id="tcEdad" prefWidth="49.0" text="Edad" />
+            <TableColumn fx:id="tcTelefono" prefWidth="95.0" text="Telefono" />
+            <TableColumn fx:id="tcMembresia" prefWidth="178.0" text="Membresia" />
+            <TableColumn fx:id="tcPrecio" prefWidth="107.0" text="Precio" />
+            <TableColumn fx:id="tcClase" prefWidth="249.0" text="Clase" />
+        </columns>
+      </TableView>
+      <ImageView fitHeight="232.0" fitWidth="162.0" layoutX="777.0" layoutY="-34.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@6412e10a-1915-4ad6-a9d0-1512e2b30163.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

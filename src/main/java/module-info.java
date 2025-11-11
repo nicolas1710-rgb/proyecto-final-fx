@@ -4,6 +4,12 @@ module co.edu.uniquindio.proyectofx.proyectofxapp {
     requires java.desktop;
     requires java.sql;
 
+    requires javafx.graphics;
+
+    requires javafx.base;
+
+
+
     opens co.edu.uniquindio.proyectofx.proyectofxapp to javafx.fxml;
     exports co.edu.uniquindio.proyectofx.proyectofxapp;
 
