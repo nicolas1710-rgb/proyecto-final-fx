@@ -3,6 +3,7 @@ package co.edu.uniquindio.proyectofx.proyectofxapp.Factory;
 import co.edu.uniquindio.proyectofx.proyectofxapp.model.*;
 import co.edu.uniquindio.proyectofx.proyectofxapp.Util.DataUtil;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class ModelFactory {
@@ -21,17 +22,19 @@ public class ModelFactory {
     }
 
     public List<Usuarios> obtenerUsuarios() {
-
         return gimnasio.getListaUsuarios();
     }
 
-    public Usuarios crearUsuarios(String nombre, long identificacion, int edad, long telefono, TipoMembresia membresia, DuracionMembresia duracion) {
-        return gimnasio.crearUsuarios(nombre, identificacion, edad, telefono, membresia, duracion);
-
+    public Usuarios obtenerUsuario(long identificacion) {
+        return gimnasio.obtenerUsuario(identificacion);
     }
 
-    public boolean actualizarUsuario(long identificacion, String nombre, int edad, long telefono, TipoMembresia membresia, DuracionMembresia duracion,Clases clase) {
-        return gimnasio.actualizarUsuario(identificacion, nombre, edad, telefono, membresia, duracion,clase);
+    public Usuarios crearUsuarios(String nombre, long identificacion, int edad, long telefono, TipoMembresia membresia, DuracionMembresia duracion, LocalDate fechaInicio) {
+        return gimnasio.crearUsuarios(nombre, identificacion, edad, telefono, membresia, duracion, fechaInicio);
+    }
+
+    public boolean actualizarUsuario(long identificacion, String nombre, int edad, long telefono, TipoMembresia membresia, DuracionMembresia duracion, LocalDate fechaInicio, Clases clase) {
+        return gimnasio.actualizarUsuario(identificacion, nombre, edad, telefono, membresia, duracion, fechaInicio, clase);
     }
 
     public boolean eliminarUsuario(long identificacion) {

@@ -14,12 +14,13 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 public class crearUsuarioViewController {
     private UsuarioController usuarioController;
     private ObservableList<Usuarios> listaUsuarios = FXCollections.observableArrayList();
-    private ObservableList<TiposdeClases> listaTiposDeClases = FXCollections.observableArrayList();
     private Usuarios usuarioSeleccionado;
     private boolean modoAdmin = false;
 
@@ -38,6 +39,9 @@ public class crearUsuarioViewController {
 
     @FXML
     private ChoiceBox<DuracionMembresia> optionDuracionMembresia;
+
+    @FXML
+    private DatePicker datePickerFechaInicio;
 
     @FXML
     private TableView<Usuarios> tableUsuario;
@@ -72,8 +76,10 @@ public class crearUsuarioViewController {
     private TextField txtTelefono;
     @FXML
     private TableColumn<Usuarios,String> tcClase;
-
-
+    @FXML
+    private TableColumn<Usuarios, String> tcFechaFin;
+    @FXML
+    private TableColumn<Usuarios, String> tcEstado;
 
     @FXML
     void onAgregarUsuario(ActionEvent event) {
@@ -83,7 +89,6 @@ public class crearUsuarioViewController {
     @FXML
     void ActualizarUsuario(ActionEvent event) {
         Actualizarusuario();
-
     }
 
     @FXML
@@ -93,32 +98,33 @@ public class crearUsuarioViewController {
 
     @FXML
     void initialize() {
-
         initChoiceBoxes();
+        initDataBinding();
+        listenerSelection();
         txtBuscar.textProperty().addListener((observable, oldValue, newValue) -> {
             buscarUsuarioPorTexto(newValue);
         });
     }
 
-
     private void initChoiceBoxes() {
         optionMembresia.setItems(FXCollections.observableArrayList(TipoMembresia.values()));
         optionDuracionMembresia.setItems(FXCollections.observableArrayList(DuracionMembresia.values()));
-
     }
+
     public void setUsuarioController(UsuarioController usuarioController) {
         this.usuarioController = usuarioController;
-        initView(); // ✅ ahora sí se ejecuta cuando ya tiene el controlador asignado
-    }
-    private void initView() {
-        initDataBinding();
-        obtenerUsuarios();
-        tableUsuario.getItems().clear();
-        tableUsuario.setItems(listaUsuarios);
-        listenerSelection();
     }
 
+    public void setListaUsuarios(ObservableList<Usuarios> listaCompartida) {
+        this.listaUsuarios = listaCompartida;
+        if (tableUsuario != null) {
+            tableUsuario.setItems(this.listaUsuarios);
+        }
+    }
+    
     private void initDataBinding() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
         tcNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
         tcEdad.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getEdad())));
         tcId.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getIdentificacion())));
@@ -130,29 +136,28 @@ public class crearUsuarioViewController {
             if (clase != null && clase.getTipo() != null) {
                 return new SimpleStringProperty(clase.getTipo().getNombre()+"-"+clase.getTipo().getHorario());
             } else {
-                return new SimpleStringProperty("Sin clase"); // o ""
+                return new SimpleStringProperty("Sin clase");
             }
         });
+        tcFechaFin.setCellValueFactory(cellData -> {
+            if (cellData.getValue().getFechaFinMembresia() != null) {
+                return new SimpleStringProperty(cellData.getValue().getFechaFinMembresia().format(formatter));
+            }
+            return new SimpleStringProperty("N/A");
+        });
 
+        tcEstado.setCellValueFactory(cellData -> {
+            boolean activo = cellData.getValue().isActivo();
+            return new SimpleStringProperty(activo ? "Activo" : "Inactivo");
+        });
     }
 
-    private void obtenerUsuarios() {
-        listaUsuarios.clear();
-        if (usuarioController != null) {
-            // Esto debe traer los usuarios ACTUALIZADOS del gimnasio
-            listaUsuarios.addAll(usuarioController.obtenerUsuarios());
-        }
+    private void listenerSelection() {
+        tableUsuario.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            usuarioSeleccionado = newSelection;
+            mostrarInformacion(usuarioSeleccionado);
+        });
     }
-        private void listenerSelection () {
-
-            tableUsuario.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-                usuarioSeleccionado = newSelection;
-                mostrarInformacion(usuarioSeleccionado);
-            });
-
-        }
-
-
 
     private void mostrarInformacion(Usuarios usuarioSeleccionado) {
         if (usuarioSeleccionado != null) {
@@ -162,6 +167,7 @@ public class crearUsuarioViewController {
             txtTelefono.setText(String.valueOf(usuarioSeleccionado.getTelefono()));
             optionMembresia.setValue(usuarioSeleccionado.getMembresia());
             optionDuracionMembresia.setValue(usuarioSeleccionado.getDuracion());
+            datePickerFechaInicio.setValue(usuarioSeleccionado.getFechaInicioMembresia());
         }
     }
 
@@ -173,13 +179,14 @@ public class crearUsuarioViewController {
             int telefono = Integer.parseInt(txtTelefono.getText());
             TipoMembresia membresia = optionMembresia.getValue();
             DuracionMembresia duracion = optionDuracionMembresia.getValue();
+            LocalDate fechaInicio = datePickerFechaInicio.getValue();
 
-            if (!validarCampos(nombre, identificacion, edad, telefono, membresia, duracion)) {
-                mostrarMensaje("Error", null, "Por favor completa todos los campos", Alert.AlertType.WARNING);
+            if (!validarCampos(nombre, identificacion, edad, telefono, membresia, duracion, fechaInicio)) {
+                mostrarMensaje("Error", null, "Por favor completa todos los campos, incluida la fecha de inicio", Alert.AlertType.WARNING);
                 return;
             }
 
-            Usuarios usuario = usuarioController.crearUsuario(nombre, identificacion, edad, telefono, membresia, duracion);
+            Usuarios usuario = usuarioController.crearUsuario(nombre, identificacion, edad, telefono, membresia, duracion, fechaInicio);
             if (usuario != null) {
                 listaUsuarios.add(usuario);
                 mostrarMensaje("Éxito", null, "Usuario creado correctamente", Alert.AlertType.INFORMATION);
@@ -193,8 +200,8 @@ public class crearUsuarioViewController {
     }
 
     private boolean validarCampos(String nombre, int identificacion, int edad, int telefono,
-                                  TipoMembresia membresia, DuracionMembresia duracion) {
-        return !(nombre == null || nombre.isEmpty() || membresia == null || duracion == null
+                                  TipoMembresia membresia, DuracionMembresia duracion, LocalDate fechaInicio) {
+        return !(nombre == null || nombre.isEmpty() || membresia == null || duracion == null || fechaInicio == null
                 || identificacion <= 0 || edad <= 0 || telefono <= 0);
     }
 
@@ -204,15 +211,6 @@ public class crearUsuarioViewController {
         alert.setHeaderText(header);
         alert.setContentText(contenido);
         alert.showAndWait();
-    }
-
-    private boolean mostrarMensajeConfirmacion(String mensaje) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setHeaderText(null);
-        alert.setTitle("Confirmación");
-        alert.setContentText(mensaje);
-        Optional<ButtonType> action = alert.showAndWait();
-        return action.get() == ButtonType.OK;
     }
 
     private void buscarUsuarioPorTexto(String texto) {
@@ -227,17 +225,6 @@ public class crearUsuarioViewController {
         }
     }
 
-    private void actualizarTablaUsuarios() {
-        // Vacía la lista actual
-        listaUsuarios.clear();
-
-        // Vuelve a obtener la lista actualizada desde el controlador
-        listaUsuarios.addAll(usuarioController.obtenerUsuarios());
-
-        // Refresca la tabla visualmente
-        tableUsuario.refresh();
-    }
-
     @FXML
     void Eliminarusuario() {
         Usuarios usuarioSeleccionado = tableUsuario.getSelectionModel().getSelectedItem();
@@ -248,8 +235,8 @@ public class crearUsuarioViewController {
         }
 
         if (usuarioController.eliminarUsuario(usuarioSeleccionado.getIdentificacion())) {
+            listaUsuarios.remove(usuarioSeleccionado);
             mostrarMensaje("Éxito", null, "Usuario eliminado correctamente.", Alert.AlertType.INFORMATION);
-            actualizarTablaUsuarios();
         } else {
             mostrarMensaje("Error", null, "No se pudo eliminar el usuario.", Alert.AlertType.ERROR);
         }
@@ -264,14 +251,20 @@ public class crearUsuarioViewController {
             long telefono = Long.parseLong(txtTelefono.getText());
             TipoMembresia membresia = optionMembresia.getValue();
             DuracionMembresia duracion = optionDuracionMembresia.getValue();
-            Clases clase=null;
+            LocalDate fechaInicio = datePickerFechaInicio.getValue();
+            Clases clase = usuarioSeleccionado != null ? usuarioSeleccionado.getClase() : null;
 
-
-            boolean actualizado = usuarioController.actualizarUsuario(identificacion, nombre, edad, telefono, membresia, duracion,clase);
+            boolean actualizado = usuarioController.actualizarUsuario(identificacion, nombre, edad, telefono, membresia, duracion, fechaInicio, clase);
 
             if (actualizado) {
+                int index = listaUsuarios.indexOf(usuarioSeleccionado);
+                if (index != -1) {
+                    Usuarios usuarioActualizado = usuarioController.obtenerUsuario(identificacion);
+                    if (usuarioActualizado != null) {
+                        listaUsuarios.set(index, usuarioActualizado);
+                    }
+                }
                 mostrarMensaje("Éxito", "Usuario actualizado correctamente");
-                actualizarTablaUsuarios();
             } else {
                 mostrarMensaje("Error", "No se encontró el usuario con esa identificación");
             }
@@ -281,13 +274,17 @@ public class crearUsuarioViewController {
         }
     }
 
-    private void mostrarMensaje(String éxito, String usuarioActualizadoCorrectamente) {
+    private void mostrarMensaje(String titulo, String contenido) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(contenido);
+        alert.showAndWait();
     }
 
     @FXML
     void volverAPantallaPrincipal(ActionEvent event) {
         try {
-            // Cargar pantalla principal
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/proyectofx/proyectofxapp/PantallaPrincipal.fxml"));
             Parent root = loader.load();
 
@@ -296,7 +293,6 @@ public class crearUsuarioViewController {
             stage.setScene(new Scene(root));
             stage.show();
 
-            // Cerrar ventana actual
             Stage currentStage = (Stage) ((Button) event.getSource()).getScene().getWindow();
             currentStage.close();
 
@@ -316,31 +312,4 @@ public class crearUsuarioViewController {
     public void setModoAdmin(boolean modoAdmin) {
         this.modoAdmin = modoAdmin;
     }
-    public void setListaUsuarios(ObservableList<Usuarios> listaCompartida) {
-        if (listaCompartida != null) {
-            this.listaUsuarios = listaCompartida;
-        }
-        // Siempre conectar la tabla con la lista
-        if (tableUsuario != null) {
-            tableUsuario.setItems(listaUsuarios);
-        }
-    }
-
-    // En tus métodos de actualización, usa la lista compartida
-    private void actualizarUsuarioEnLista(Usuarios usuarioActualizado) {
-        int index = -1;
-        for (int i = 0; i < listaUsuarios.size(); i++) {
-            if (listaUsuarios.get(i).getIdentificacion() == usuarioActualizado.getIdentificacion()) {
-                index = i;
-                break;
-            }
-        }
-
-        if (index != -1) {
-            listaUsuarios.set(index, usuarioActualizado);
-        }
-    }
 }
-
-
-

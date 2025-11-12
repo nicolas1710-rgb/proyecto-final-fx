@@ -1,13 +1,19 @@
 package co.edu.uniquindio.proyectofx.proyectofxapp.model;
 
-public enum DuracionMembresia {
-    MENSUAL(30),
-    TRIMESTRAL(90),
-    ANUAL(365);
-    private int dias;
-    DuracionMembresia(int dias){
-        this.dias=dias;
-    }
-    public int getDias(){return this.dias;}
+import java.time.Period;
 
+public enum DuracionMembresia {
+    MENSUAL(Period.ofMonths(1)),
+    TRIMESTRAL(Period.ofMonths(3)),
+    ANUAL(Period.ofYears(1));
+
+    private final Period periodo;
+
+    DuracionMembresia(Period periodo) {
+        this.periodo = periodo;
+    }
+
+    public Period getPeriodo() {
+        return this.periodo;
+    }
 }

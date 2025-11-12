@@ -22,11 +22,17 @@
                         <fx:include fx:id="crearEntrenador" source="crearEntrenador.fxml" />
                     </content>
                 </Tab>
-            <Tab text="Validacion">
-              <content>
-                  <fx:include fx:id="ValidarUsuario" source="ValidacionUsuario.fxml" />
-              </content>
-            </Tab>
+                <Tab text="Validacion">
+                    <content>
+                        <fx:include fx:id="ValidarUsuario" source="ValidacionUsuario.fxml" />
+                    </content>
+                </Tab>
+
+                <Tab text="Reportes">
+                    <content>
+                        <fx:include fx:id="reporteUsuarioForm" source="reporteUsuario.fxml" />
+                    </content>
+                </Tab>
 
             </tabs>
         </TabPane>

@@ -1,6 +1,5 @@
 package co.edu.uniquindio.proyectofx.proyectofxapp.ViewController;
 
-import co.edu.uniquindio.proyectofx.proyectofxapp.controller.EntrenadorController;
 import co.edu.uniquindio.proyectofx.proyectofxapp.controller.UsuarioController;
 import co.edu.uniquindio.proyectofx.proyectofxapp.model.*;
 import javafx.beans.property.SimpleStringProperty;
@@ -18,7 +17,7 @@ import java.io.IOException;
 
 public class reservaClasesView {
     private ObservableList<TiposdeClases> listaTiposDeClases = FXCollections.observableArrayList();
-    private ObservableList<Usuarios> listaUsuarios = FXCollections.observableArrayList();
+    private ObservableList<Usuarios> listaUsuarios; // Lista compartida
     private UsuarioController usuarioController;
     private Usuarios usuarioSeleccionado;
 
@@ -30,60 +29,108 @@ public class reservaClasesView {
 
     @FXML
     private TextField txtIdClase;
+
     @FXML
     void initialize() {
-
-
-        //Que lea automaticamente lo que se escribe en el id
         txtIdClase.textProperty().addListener((observable, oldValue, newValue) -> {
             buscarUsuarioPorTexto(newValue);
         });
-        // Evento al hacer clic en una fila de la tabla
+
         tableTiposDeClases.setOnMouseClicked(event -> {
-            if (event.getClickCount() == 2) { // doble clic
+            if (event.getClickCount() == 2) {
                 TiposdeClases claseSeleccionada = tableTiposDeClases.getSelectionModel().getSelectedItem();
                 if (claseSeleccionada != null) {
                     asignarClaseAUsuario(claseSeleccionada);
                 }
             }
         });
-
     }
+
     public void setUsuarioController(UsuarioController usuarioController) {
         this.usuarioController = usuarioController;
-        initView(); // Se llama solo cuando ya hay controlador
+        initView();
+    }
+
+    // Método para inyectar la lista compartida
+    public void setListaUsuarios(ObservableList<Usuarios> listaUsuarios) {
+        this.listaUsuarios = listaUsuarios;
     }
 
     private void initView() {
         initDataBinding();
-        cargarUsuarios();
         cargarTiposDeClases();
         tableTiposDeClases.setItems(listaTiposDeClases);
-
     }
-
 
     private void initDataBinding() {
         tcTiposCLases.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getNombre() + " - " + cellData.getValue().getHorario())
         );
-
     }
-
 
     private void cargarTiposDeClases() {
         listaTiposDeClases.clear();
         listaTiposDeClases.addAll(TiposdeClases.values());
     }
 
-    private void cargarUsuarios() {
-        // Ya no necesitas cargar usuarios aquí, la lista ya está compartida
-        listaUsuarios.addAll(usuarioController.obtenerUsuarios());
+    private void buscarUsuarioPorTexto(String texto) {
+        usuarioSeleccionado = null;
+        if (texto == null || texto.isEmpty() || listaUsuarios == null) return;
+
+        for (Usuarios u : listaUsuarios) {
+            if (String.valueOf(u.getIdentificacion()).equals(texto)) {
+                usuarioSeleccionado = u;
+                break;
+            }
+        }
     }
+
+    private void asignarClaseAUsuario(TiposdeClases tipoSeleccionado) {
+        if (usuarioSeleccionado == null) {
+            mostrarError("Por favor ingrese un ID de usuario válido antes de seleccionar una clase.");
+            return;
+        }
+
+        try {
+            Clases nuevaClase = new Clases();
+            nuevaClase.setTipo(tipoSeleccionado); // Asignar el tipo de clase seleccionado
+
+            // Llamar al método de actualización, pasando la fecha de inicio existente para no alterarla
+            boolean actualizado = usuarioController.actualizarUsuario(
+                    usuarioSeleccionado.getIdentificacion(),
+                    usuarioSeleccionado.getNombre(),
+                    usuarioSeleccionado.getEdad(),
+                    usuarioSeleccionado.getTelefono(),
+                    usuarioSeleccionado.getMembresia(),
+                    usuarioSeleccionado.getDuracion(),
+                    usuarioSeleccionado.getFechaInicioMembresia(), // Pasar la fecha existente
+                    nuevaClase
+            );
+
+            if (actualizado) {
+                // Actualizar el objeto en la lista compartida
+                usuarioSeleccionado.setClase(nuevaClase);
+                mostrarMensaje("Clase asignada exitosamente al usuario " + usuarioSeleccionado.getNombre());
+
+                // Forzar la actualización de la tabla en la otra vista
+                int index = listaUsuarios.indexOf(usuarioSeleccionado);
+                if (index != -1) {
+                    listaUsuarios.set(index, usuarioSeleccionado);
+                }
+
+            } else {
+                mostrarError("No se pudo asignar la clase. El usuario no fue encontrado en el backend.");
+            }
+
+        } catch (Exception e) {
+            mostrarError("Error al asignar clase: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     void volverAPantallaPrincipal(ActionEvent event) {
         try {
-            // Cargar pantalla principal
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/proyectofx/proyectofxapp/PantallaPrincipal.fxml"));
             Parent root = loader.load();
 
@@ -92,7 +139,6 @@ public class reservaClasesView {
             stage.setScene(new Scene(root));
             stage.show();
 
-            // Cerrar ventana actual
             Stage currentStage = (Stage) ((Button) event.getSource()).getScene().getWindow();
             currentStage.close();
 
@@ -100,6 +146,7 @@ public class reservaClasesView {
             mostrarError("Error al volver: " + e.getMessage());
         }
     }
+
     private void mostrarError(String mensaje) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
@@ -107,38 +154,6 @@ public class reservaClasesView {
         alert.setContentText(mensaje);
         alert.showAndWait();
     }
-    private void buscarUsuarioPorTexto(String texto) {
-        usuarioSeleccionado = null; // limpia la selección anterior
-
-        if (texto == null || texto.isEmpty()) return;
-
-        for (Usuarios u : listaUsuarios) {
-            if (String.valueOf(u.getIdentificacion()).equals(texto)) {
-                usuarioSeleccionado = u; // guarda el usuario
-                break; // sale del ciclo al encontrarlo
-            }
-        }
-    }
-    private void asignarClaseAUsuario(TiposdeClases tipoSeleccionado) {
-        if (usuarioSeleccionado == null) {
-            mostrarError("Por favor ingrese un ID de usuario válido antes de seleccionar una clase.");
-            return;
-        }
-
-        try {
-            // Crear la clase que el usuario va a tomar
-            Clases nuevaClase = new Clases();
-
-            // Llamar al controlador para que la agregue al usuario (esto actualiza en la base de datos)
-            usuarioController.agregarClaseAUsuario(usuarioSeleccionado.getIdentificacion(), nuevaClase);
-
-            mostrarMensaje("Clase asignada exitosamente al usuario " + usuarioSeleccionado.getNombre());
-
-        } catch (Exception e) {
-            mostrarError("Error al asignar clase: " + e.getMessage());
-        }
-    }
-
 
     private void mostrarMensaje(String mensaje) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -147,10 +162,4 @@ public class reservaClasesView {
         alert.setContentText(mensaje);
         alert.showAndWait();
     }
-
 }
-
-
-
-
-
