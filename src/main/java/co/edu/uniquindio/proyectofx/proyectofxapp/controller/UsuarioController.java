@@ -21,11 +21,11 @@ public class UsuarioController {
         return modelFactory.obtenerUsuario(identificacion);
     }
 
-    public Usuarios crearUsuario(String nombre, long identificacion, int edad, long telefono, TipoMembresia membresia, DuracionMembresia duracion, LocalDate fechaInicio) {
-        return modelFactory.crearUsuarios(nombre,  identificacion,  edad,  telefono,  membresia,  duracion, fechaInicio);
+    public Usuarios crearUsuario(String nombre, long identificacion, int edad, long telefono, TipoMembresia membresia, DuracionMembresia duracion, LocalDate fechaInicio, TipoUsuario tipoUsuario) {
+        return modelFactory.crearUsuarios(nombre,  identificacion,  edad,  telefono,  membresia,  duracion, fechaInicio, tipoUsuario);
     }
-    public boolean actualizarUsuario(long identificacion, String nombre, int edad, long telefono, TipoMembresia membresia, DuracionMembresia duracion, LocalDate fechaInicio, Clases clase) {
-        return modelFactory.actualizarUsuario(identificacion, nombre, edad, telefono, membresia, duracion, fechaInicio, clase);
+    public boolean actualizarUsuario(long identificacion, String nombre, int edad, long telefono, TipoMembresia membresia, DuracionMembresia duracion, LocalDate fechaInicio, TipoUsuario tipoUsuario, Clases clase) {
+        return modelFactory.actualizarUsuario(identificacion, nombre, edad, telefono, membresia, duracion, fechaInicio, tipoUsuario, clase);
     }
     public boolean eliminarUsuario(long identificacion) {
         return modelFactory.eliminarUsuario(identificacion);

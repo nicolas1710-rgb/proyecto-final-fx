@@ -25,6 +25,9 @@ public class UsuarioViewController {
     @FXML
     private ReportesViewController reportesFormController;
 
+    @FXML
+    private ValidacionUsuarioView validacionUsuarioController; // fx:id del include + "Controller"
+
 
     @FXML
     public void initialize() {
@@ -43,6 +46,11 @@ public class UsuarioViewController {
 
         if (reportesFormController != null) {
             reportesFormController.setListaUsuarios(listaUsuariosCompartida);
+        }
+
+        // Conectar la vista de validación
+        if (validacionUsuarioController != null) {
+            validacionUsuarioController.setListaUsuarios(listaUsuariosCompartida);
         }
 
         System.out.println("Controladores y lista compartida conectados correctamente ✅");

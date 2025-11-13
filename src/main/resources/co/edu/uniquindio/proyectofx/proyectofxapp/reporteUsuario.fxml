@@ -18,7 +18,7 @@
          <children>
             <Circle fill="WHITE" layoutX="79.0" layoutY="130.0" radius="55.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0">
                <effect>
-                  <DropShadow height="50.31" radius="29.052500000000002" width="67.9">
+                  <DropShadow height="59.11" radius="22.46" width="32.73">
                      <color>
                         <Color red="1.0" green="1.0" blue="1.0" />
                      </color>
@@ -40,9 +40,9 @@
                </columnResizePolicy>
             </TableView>
             <Separator layoutX="-4.0" layoutY="47.0" prefHeight="11.0" prefWidth="933.0" />
-            <Label layoutX="167.0" layoutY="110.0" prefHeight="50.0" prefWidth="517.0" text="Usuarios activos actualmente" textFill="WHITE">
+            <Label layoutX="167.0" layoutY="95.0" prefHeight="50.0" prefWidth="517.0" text="USUARIOS ACTIVOS" textFill="WHITE">
                <font>
-                  <Font size="34.0" />
+                  <Font name="SimSun" size="49.0" />
                </font>
             </Label>
             <Text fx:id="txtCambioUsuarios" layoutX="67.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">

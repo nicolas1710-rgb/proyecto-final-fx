@@ -103,7 +103,8 @@ public class reservaClasesView {
                     usuarioSeleccionado.getTelefono(),
                     usuarioSeleccionado.getMembresia(),
                     usuarioSeleccionado.getDuracion(),
-                    usuarioSeleccionado.getFechaInicioMembresia(), // Pasar la fecha existente
+                    usuarioSeleccionado.getFechaInicioMembresia(),
+                    usuarioSeleccionado.getTipoUsuario(),// Pasar la fecha existente
                     nuevaClase
             );
 

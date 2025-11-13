@@ -48,12 +48,12 @@
                         <Label layoutX="446.0" layoutY="124.0" text="Edad:" textFill="WHITE" />
                         <Label layoutX="33.0" layoutY="124.0" text="Identificacion:" textFill="WHITE" />
                         <Label layoutX="436.0" layoutY="72.0" text="Telefono:" textFill="WHITE" />
-                        <Label layoutX="100.0" layoutY="237.0" text="Tipo:" textFill="WHITE">
+                        <Label layoutX="22.0" layoutY="237.0" text="Tipo Membresía:" textFill="WHITE">
                             <font>
                                 <Font size="13.0" />
                             </font>
                         </Label>
-                        <ChoiceBox fx:id="optionMembresia" layoutX="149.0" layoutY="234.0" prefHeight="25.0" prefWidth="174.0" />
+                        <ChoiceBox fx:id="optionMembresia" layoutX="139.0" layoutY="234.0" prefHeight="25.0" prefWidth="174.0" />
                         <TextField fx:id="txtIdentificacion" layoutX="121.0" layoutY="120.0" prefHeight="25.0" prefWidth="278.0" />
                         <TextField fx:id="txtTelefono" layoutX="497.0" layoutY="69.0" prefHeight="25.0" prefWidth="278.0" />
                         <TextField fx:id="txtEdad" layoutX="497.0" layoutY="120.0" prefHeight="25.0" prefWidth="278.0" />
@@ -66,8 +66,8 @@
                                 <Bloom />
                             </effect>
                         </Label>
-                        <ChoiceBox fx:id="optionDuracionMembresia" layoutX="440.0" layoutY="234.0" prefHeight="25.0" prefWidth="174.0" />
-                        <Label layoutX="379.0" layoutY="238.0" text="Duracion:" textFill="WHITE" />
+                        <ChoiceBox fx:id="optionDuracionMembresia" layoutX="422.0" layoutY="234.0" prefHeight="25.0" prefWidth="174.0" />
+                        <Label layoutX="344.0" layoutY="238.0" text="Duracion:" textFill="WHITE" />
                         <TableView fx:id="tableUsuario" layoutX="5.0" layoutY="429.0" prefHeight="200.0" prefWidth="916.0">
                             <columns>
                                 <TableColumn fx:id="tcNombre" prefWidth="75.0" text="Nombre" />
@@ -99,8 +99,10 @@
                         <Separator layoutY="212.0" prefHeight="11.0" prefWidth="925.0" />
                         <Separator layoutX="-120.0" layoutY="317.0" prefHeight="11.0" prefWidth="1045.0" />
                         <Button layoutX="828.0" layoutY="-4.0" mnemonicParsing="false" onAction="#volverAPantallaPrincipal" prefHeight="37.0" prefWidth="95.0" text="REGRESAR" />
-                  <DatePicker fx:id="datePickerFechaInicio" layoutX="711.0" layoutY="234.0" />
-                  <Label layoutX="636.0" layoutY="238.0" text="Fecha Inicio:" textFill="WHITE" />
+                        <DatePicker fx:id="datePickerFechaInicio" layoutX="422.0" layoutY="276.0" />
+                        <Label layoutX="337.0" layoutY="280.0" text="Fecha Inicio:" textFill="WHITE" />
+                        <ChoiceBox fx:id="optionTipoUsuario" layoutX="727.0" layoutY="234.0" prefHeight="25.0" prefWidth="174.0" />
+                        <Label layoutX="636.0" layoutY="238.0" text="Tipo Usuario:" textFill="WHITE" />
                     </children>
                 </AnchorPane>
             </children>

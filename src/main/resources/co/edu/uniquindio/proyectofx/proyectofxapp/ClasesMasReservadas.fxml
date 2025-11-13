@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -16,6 +17,9 @@
          <font>
             <Font name="SimSun" size="57.0" />
          </font>
+         <effect>
+            <Bloom />
+         </effect>
       </Text>
       <Separator layoutX="5.0" layoutY="87.0" prefHeight="16.0" prefWidth="918.0" />
       <TableView fx:id="tableClases" layoutX="20.0" layoutY="217.0" prefHeight="252.0" prefWidth="896.0">

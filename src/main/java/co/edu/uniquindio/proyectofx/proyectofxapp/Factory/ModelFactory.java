@@ -29,12 +29,12 @@ public class ModelFactory {
         return gimnasio.obtenerUsuario(identificacion);
     }
 
-    public Usuarios crearUsuarios(String nombre, long identificacion, int edad, long telefono, TipoMembresia membresia, DuracionMembresia duracion, LocalDate fechaInicio) {
-        return gimnasio.crearUsuarios(nombre, identificacion, edad, telefono, membresia, duracion, fechaInicio);
+    public Usuarios crearUsuarios(String nombre, long identificacion, int edad, long telefono, TipoMembresia membresia, DuracionMembresia duracion, LocalDate fechaInicio, TipoUsuario tipoUsuario) {
+        return gimnasio.crearUsuarios(nombre, identificacion, edad, telefono, membresia, duracion, fechaInicio, tipoUsuario);
     }
 
-    public boolean actualizarUsuario(long identificacion, String nombre, int edad, long telefono, TipoMembresia membresia, DuracionMembresia duracion, LocalDate fechaInicio, Clases clase) {
-        return gimnasio.actualizarUsuario(identificacion, nombre, edad, telefono, membresia, duracion, fechaInicio, clase);
+    public boolean actualizarUsuario(long identificacion, String nombre, int edad, long telefono, TipoMembresia membresia, DuracionMembresia duracion, LocalDate fechaInicio, TipoUsuario tipoUsuario, Clases clase) {
+        return gimnasio.actualizarUsuario(identificacion, nombre, edad, telefono, membresia, duracion, fechaInicio, tipoUsuario, clase);
     }
 
     public boolean eliminarUsuario(long identificacion) {

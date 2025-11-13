@@ -11,6 +11,7 @@ public class Usuarios {
     private DuracionMembresia duracion;
     private Clases clase;
     private LocalDate fechaInicioMembresia;
+    private TipoUsuario tipoUsuario; // Nuevo atributo
 
     public Usuarios() {
     }
@@ -38,6 +39,8 @@ public class Usuarios {
     public void setDuracion(DuracionMembresia duracion) { this.duracion = duracion; }
     public LocalDate getFechaInicioMembresia() { return fechaInicioMembresia; }
     public void setFechaInicioMembresia(LocalDate fechaInicioMembresia) { this.fechaInicioMembresia = fechaInicioMembresia; }
+    public TipoUsuario getTipoUsuario() { return tipoUsuario; }
+    public void setTipoUsuario(TipoUsuario tipoUsuario) { this.tipoUsuario = tipoUsuario; }
 
     /**
      * Calcula la fecha de fin de la membresía.
@@ -57,10 +60,22 @@ public class Usuarios {
     public boolean isActivo() {
         LocalDate fechaFin = getFechaFinMembresia();
         if (fechaFin == null) {
-            return false; // No se puede determinar si está activo sin una fecha de fin.
+            return false;
         }
-        // La membresía es válida hasta el final del día de la fecha de fin.
         return !LocalDate.now().isAfter(fechaFin);
+    }
+
+    /**
+     * Calcula el precio final de la membresía aplicando el descuento del tipo de usuario.
+     * @return el precio final, o 0.0 si no se puede calcular.
+     */
+    public double getPrecioFinal() {
+        if (membresia == null || duracion == null || tipoUsuario == null) {
+            return 0.0;
+        }
+        double precioBase = membresia.getPrecio(duracion);
+        double descuento = tipoUsuario.getDescuento();
+        return precioBase * (1 - descuento);
     }
 
     @Override
@@ -68,12 +83,7 @@ public class Usuarios {
         return "Usuarios{" +
                 "nombre='" + nombre + '\'' +
                 ", identificacion=" + identificacion +
-                ", edad=" + edad +
-                ", telefono=" + telefono +
-                ", membresia= " + membresia +
-                ", duracion=" + duracion +
-                ", fechaInicioMembresia=" + fechaInicioMembresia +
-                ", fechaFinMembresia=" + getFechaFinMembresia() +
+                ", tipoUsuario=" + tipoUsuario +
                 '}';
     }
 }

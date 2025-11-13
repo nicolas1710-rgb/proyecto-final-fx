@@ -34,7 +34,9 @@
             <TableColumn fx:id="tcEdad" prefWidth="49.0" text="Edad" />
             <TableColumn fx:id="tcTelefono" prefWidth="95.0" text="Telefono" />
             <TableColumn fx:id="tcMembresia" prefWidth="178.0" text="Membresia" />
-            <TableColumn fx:id="tcPrecio" prefWidth="107.0" text="Precio" />
+            <TableColumn fx:id="tcTipoUsuario" prefWidth="100.0" text="Tipo Usuario" />
+            <TableColumn fx:id="tcPrecio" prefWidth="107.0" text="Precio Base" />
+            <TableColumn fx:id="tcPrecioFinal" prefWidth="107.0" text="Precio Final" />
             <TableColumn fx:id="tcClase" prefWidth="249.0" text="Clase" />
         </columns>
       </TableView>

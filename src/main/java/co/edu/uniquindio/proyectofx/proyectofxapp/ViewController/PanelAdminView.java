@@ -22,28 +22,27 @@ public class PanelAdminView {
     @FXML
     private ReporteUsuarioView reporteUsuarioFormController;
 
+    @FXML
+    private ValidacionUsuarioView ValidarUsuarioController; // fx:id del include + "Controller"
+
 
     @FXML
     public void initialize() {
-        // 1. Inicializar el controlador de lógica
         usuarioController = new UsuarioController();
-
-        // 2. Cargar la lista de usuarios desde la fuente de datos
         listaUsuariosCompartida.setAll(usuarioController.obtenerUsuarios());
 
-        // 3. Inyectar dependencias en el controlador de creación de usuarios
         if (crearUsuarioFormController != null) {
             crearUsuarioFormController.setUsuarioController(usuarioController);
             crearUsuarioFormController.setListaUsuarios(listaUsuariosCompartida);
-        } else {
-            System.err.println("El controlador de 'crearUsuario.fxml' no se inyectó correctamente.");
         }
 
-        // 4. Inyectar dependencias en el controlador de reportes
         if (reporteUsuarioFormController != null) {
             reporteUsuarioFormController.setListaUsuarios(listaUsuariosCompartida);
-        } else {
-            System.err.println("El controlador de 'reporteUsuario.fxml' no se inyectó correctamente.");
+        }
+
+        // Conectar la vista de validación
+        if (ValidarUsuarioController != null) {
+            ValidarUsuarioController.setListaUsuarios(listaUsuariosCompartida);
         }
     }
 }

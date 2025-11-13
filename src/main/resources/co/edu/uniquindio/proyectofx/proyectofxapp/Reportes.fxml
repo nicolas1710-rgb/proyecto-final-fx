@@ -18,6 +18,11 @@
               <fx:include fx:id="clasesMasReservadasForm" source="ClasesMasReservadas.fxml" />
             </content>
           </Tab>
+          <Tab text="Vencimiento Membresías">
+            <content>
+              <fx:include fx:id="vencimientoMembresiasForm" source="VencimientoMembresias.fxml" />
+            </content>
+          </Tab>
         </tabs>
       </TabPane>
    </children>

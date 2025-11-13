@@ -3,7 +3,6 @@ package co.edu.uniquindio.proyectofx.proyectofxapp.model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Gimnasio {
     private String nombre;
@@ -69,7 +68,7 @@ public class Gimnasio {
         this.listaClases = listaClases;
     }
 
-    public Usuarios crearUsuarios(String nombre, long identificacion, int edad, long telefono, TipoMembresia membresia, DuracionMembresia duracion, LocalDate fechaInicio) {
+    public Usuarios crearUsuarios(String nombre, long identificacion, int edad, long telefono, TipoMembresia membresia, DuracionMembresia duracion, LocalDate fechaInicio, TipoUsuario tipoUsuario) {
         Usuarios usuarioEncontrado = obtenerUsuario(identificacion);
         if (usuarioEncontrado == null) {
             Usuarios user = new Usuarios();
@@ -79,7 +78,8 @@ public class Gimnasio {
             user.setTelefono(telefono);
             user.setMembresia(membresia);
             user.setDuracion(duracion);
-            user.setFechaInicioMembresia(fechaInicio); // Asignar fecha desde el DatePicker
+            user.setFechaInicioMembresia(fechaInicio);
+            user.setTipoUsuario(tipoUsuario); // Asignar tipo de usuario
             getListaUsuarios().add(user);
             return user;
         }else{
@@ -97,7 +97,7 @@ public class Gimnasio {
         }
         return usuarioEncontrado;
     }
-    public boolean actualizarUsuario(long identificacion, String nombre, int edad, long telefono, TipoMembresia membresia, DuracionMembresia duracion, LocalDate fechaInicio, Clases clase) {
+    public boolean actualizarUsuario(long identificacion, String nombre, int edad, long telefono, TipoMembresia membresia, DuracionMembresia duracion, LocalDate fechaInicio, TipoUsuario tipoUsuario, Clases clase) {
         Usuarios usuario = obtenerUsuario(identificacion);
         if (usuario != null) {
             usuario.setNombre(nombre);
@@ -105,7 +105,8 @@ public class Gimnasio {
             usuario.setTelefono(telefono);
             usuario.setMembresia(membresia);
             usuario.setDuracion(duracion);
-            usuario.setFechaInicioMembresia(fechaInicio); // Actualizar fecha desde el DatePicker
+            usuario.setFechaInicioMembresia(fechaInicio);
+            usuario.setTipoUsuario(tipoUsuario); // Actualizar tipo de usuario
             usuario.setClase(clase);
             return true;
         }

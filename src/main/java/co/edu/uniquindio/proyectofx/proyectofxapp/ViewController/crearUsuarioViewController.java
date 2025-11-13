@@ -41,6 +41,9 @@ public class crearUsuarioViewController {
     private ChoiceBox<DuracionMembresia> optionDuracionMembresia;
 
     @FXML
+    private ChoiceBox<TipoUsuario> optionTipoUsuario;
+
+    @FXML
     private DatePicker datePickerFechaInicio;
 
     @FXML
@@ -109,6 +112,7 @@ public class crearUsuarioViewController {
     private void initChoiceBoxes() {
         optionMembresia.setItems(FXCollections.observableArrayList(TipoMembresia.values()));
         optionDuracionMembresia.setItems(FXCollections.observableArrayList(DuracionMembresia.values()));
+        optionTipoUsuario.setItems(FXCollections.observableArrayList(TipoUsuario.values()));
     }
 
     public void setUsuarioController(UsuarioController usuarioController) {
@@ -168,6 +172,7 @@ public class crearUsuarioViewController {
             optionMembresia.setValue(usuarioSeleccionado.getMembresia());
             optionDuracionMembresia.setValue(usuarioSeleccionado.getDuracion());
             datePickerFechaInicio.setValue(usuarioSeleccionado.getFechaInicioMembresia());
+            optionTipoUsuario.setValue(usuarioSeleccionado.getTipoUsuario());
         }
     }
 
@@ -180,13 +185,14 @@ public class crearUsuarioViewController {
             TipoMembresia membresia = optionMembresia.getValue();
             DuracionMembresia duracion = optionDuracionMembresia.getValue();
             LocalDate fechaInicio = datePickerFechaInicio.getValue();
+            TipoUsuario tipoUsuario = optionTipoUsuario.getValue();
 
-            if (!validarCampos(nombre, identificacion, edad, telefono, membresia, duracion, fechaInicio)) {
-                mostrarMensaje("Error", null, "Por favor completa todos los campos, incluida la fecha de inicio", Alert.AlertType.WARNING);
+            if (!validarCampos(nombre, identificacion, edad, telefono, membresia, duracion, fechaInicio, tipoUsuario)) {
+                mostrarMensaje("Error", null, "Por favor completa todos los campos, incluida la fecha y el tipo de usuario", Alert.AlertType.WARNING);
                 return;
             }
 
-            Usuarios usuario = usuarioController.crearUsuario(nombre, identificacion, edad, telefono, membresia, duracion, fechaInicio);
+            Usuarios usuario = usuarioController.crearUsuario(nombre, identificacion, edad, telefono, membresia, duracion, fechaInicio, tipoUsuario);
             if (usuario != null) {
                 listaUsuarios.add(usuario);
                 mostrarMensaje("Éxito", null, "Usuario creado correctamente", Alert.AlertType.INFORMATION);
@@ -200,8 +206,8 @@ public class crearUsuarioViewController {
     }
 
     private boolean validarCampos(String nombre, int identificacion, int edad, int telefono,
-                                  TipoMembresia membresia, DuracionMembresia duracion, LocalDate fechaInicio) {
-        return !(nombre == null || nombre.isEmpty() || membresia == null || duracion == null || fechaInicio == null
+                                  TipoMembresia membresia, DuracionMembresia duracion, LocalDate fechaInicio, TipoUsuario tipoUsuario) {
+        return !(nombre == null || nombre.isEmpty() || membresia == null || duracion == null || fechaInicio == null || tipoUsuario == null
                 || identificacion <= 0 || edad <= 0 || telefono <= 0);
     }
 
@@ -252,9 +258,10 @@ public class crearUsuarioViewController {
             TipoMembresia membresia = optionMembresia.getValue();
             DuracionMembresia duracion = optionDuracionMembresia.getValue();
             LocalDate fechaInicio = datePickerFechaInicio.getValue();
+            TipoUsuario tipoUsuario = optionTipoUsuario.getValue();
             Clases clase = usuarioSeleccionado != null ? usuarioSeleccionado.getClase() : null;
 
-            boolean actualizado = usuarioController.actualizarUsuario(identificacion, nombre, edad, telefono, membresia, duracion, fechaInicio, clase);
+            boolean actualizado = usuarioController.actualizarUsuario(identificacion, nombre, edad, telefono, membresia, duracion, fechaInicio, tipoUsuario, clase);
 
             if (actualizado) {
                 int index = listaUsuarios.indexOf(usuarioSeleccionado);

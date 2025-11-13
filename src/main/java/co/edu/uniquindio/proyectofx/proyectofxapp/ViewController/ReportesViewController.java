@@ -12,6 +12,10 @@ public class ReportesViewController {
     @FXML
     private clasesMasReservadasView clasesMasReservadasFormController;
 
+    @FXML
+    private VencimientoMembresiasViewController vencimientoMembresiasFormController;
+
+
     public void initialize() {
         // La inicialización se hará a través del método setListaUsuarios
     }
@@ -26,6 +30,9 @@ public class ReportesViewController {
         }
         if (clasesMasReservadasFormController != null) {
             clasesMasReservadasFormController.setListaUsuarios(listaUsuarios);
+        }
+        if (vencimientoMembresiasFormController != null) {
+            vencimientoMembresiasFormController.setListaUsuarios(listaUsuarios);
         }
     }
 }
