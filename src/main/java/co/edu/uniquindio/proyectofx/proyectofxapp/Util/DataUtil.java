@@ -76,7 +76,7 @@ public class DataUtil {
         Usuarios usuario7 = new Usuarios("Jorge", 106, 40, 3197772222L);
         usuario7.setMembresia(TipoMembresia.PREMIUM);
         usuario7.setDuracion(DuracionMembresia.ANUAL);
-        usuario7.setClase(claseSpinning);
+        usuario7.setClase(claseBoxeo);
         gimnasio.getListaUsuarios().add(usuario7);
 
         Usuarios usuario8 = new Usuarios("Sofia", 107, 19, 3118885555L);

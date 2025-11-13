@@ -21,11 +21,16 @@
                         <fx:include fx:id="reservaClasesForm" source="reservaClases.fxml" />
                     </content>
                 </Tab>
-            <Tab text="Validacion">
-              <content>
-                  <fx:include fx:id="ValidarClases" source="ValidacionUsuario.fxml" />
-              </content>
-            </Tab>
+                <Tab text="Validacion">
+                    <content>
+                        <fx:include fx:id="ValidarClases" source="ValidacionUsuario.fxml" />
+                    </content>
+                </Tab>
+                <Tab text="Reportes">
+                    <content>
+                        <fx:include fx:id="reportesForm" source="Reportes.fxml" />
+                    </content>
+                </Tab>
 
             </tabs>
         </TabPane>

@@ -23,22 +23,26 @@ public class UsuarioViewController {
     private reservaClasesView reservaClasesFormController;
 
     @FXML
-    public void initialize() {
-        // 1. Inicializar el controlador principal de lógica
-        usuarioController = new UsuarioController();
+    private ReportesViewController reportesFormController;
 
-        // 2. Cargar la lista de usuarios UNA SOLA VEZ
+
+    @FXML
+    public void initialize() {
+        usuarioController = new UsuarioController();
         listaUsuariosCompartida.addAll(usuarioController.obtenerUsuarios());
 
-        // 3. Inyectar el controlador de lógica y la LISTA COMPARTIDA en los sub-controladores
         if (crearUsuarioFormController != null) {
             crearUsuarioFormController.setUsuarioController(usuarioController);
-            crearUsuarioFormController.setListaUsuarios(listaUsuariosCompartida); // Inyectar lista
+            crearUsuarioFormController.setListaUsuarios(listaUsuariosCompartida);
         }
 
         if (reservaClasesFormController != null) {
             reservaClasesFormController.setUsuarioController(usuarioController);
-            reservaClasesFormController.setListaUsuarios(listaUsuariosCompartida); // Inyectar lista
+            reservaClasesFormController.setListaUsuarios(listaUsuariosCompartida);
+        }
+
+        if (reportesFormController != null) {
+            reportesFormController.setListaUsuarios(listaUsuariosCompartida);
         }
 
         System.out.println("Controladores y lista compartida conectados correctamente ✅");
