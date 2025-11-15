@@ -4,31 +4,18 @@ import co.edu.uniquindio.proyectofx.proyectofxapp.model.Usuarios;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 
-public class ReportesViewController {
-
-    @FXML
-    private ReporteUsuarioView reporteUsuarioFormController;
-
+public class ReportesAvanzadosView {
     @FXML
     private clasesMasReservadasView clasesMasReservadasFormController;
-
     @FXML
-    private VencimientoMembresiasViewController vencimientoMembresiasFormController;
-
-
-    public void initialize() {
-    }
-
+    private IngresosPorMembresiView ingresosPorMembresiaFormController;
 
     public void setListaUsuarios(ObservableList<Usuarios> listaUsuarios) {
-        if (reporteUsuarioFormController != null) {
-            reporteUsuarioFormController.setListaUsuarios(listaUsuarios);
+        if (ingresosPorMembresiaFormController != null) {
+            ingresosPorMembresiaFormController.setListaUsuarios(listaUsuarios);
         }
         if (clasesMasReservadasFormController != null) {
             clasesMasReservadasFormController.setListaUsuarios(listaUsuarios);
-        }
-        if (vencimientoMembresiasFormController != null) {
-            vencimientoMembresiasFormController.setListaUsuarios(listaUsuarios);
         }
     }
 }

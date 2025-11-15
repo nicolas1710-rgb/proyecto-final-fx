@@ -13,17 +13,16 @@ public class PanelAdminView {
     private ObservableList<Usuarios> listaUsuariosCompartida = FXCollections.observableArrayList();
 
     @FXML
-    private AnchorPane crearUsuarioForm;
-    @FXML
     private crearUsuarioViewController crearUsuarioFormController;
 
     @FXML
-    private AnchorPane reporteUsuarioForm;
-    @FXML
-    private ReporteUsuarioView reporteUsuarioFormController;
+    private ReportesViewController reportesFormController;
 
     @FXML
-    private ValidacionUsuarioView ValidarUsuarioController; // fx:id del include + "Controller"
+    private ValidacionUsuarioView ValidarUsuarioController;
+
+    @FXML
+    private ReportesAvanzadosView reportesAvanzadosFormController; // fx:id del include + "Controller"
 
 
     @FXML
@@ -36,13 +35,16 @@ public class PanelAdminView {
             crearUsuarioFormController.setListaUsuarios(listaUsuariosCompartida);
         }
 
-        if (reporteUsuarioFormController != null) {
-            reporteUsuarioFormController.setListaUsuarios(listaUsuariosCompartida);
+        if (reportesFormController != null) {
+            reportesFormController.setListaUsuarios(listaUsuariosCompartida);
         }
 
-        // Conectar la vista de validación
         if (ValidarUsuarioController != null) {
             ValidarUsuarioController.setListaUsuarios(listaUsuariosCompartida);
+        }
+
+        if (reportesAvanzadosFormController != null) {
+            reportesAvanzadosFormController.setListaUsuarios(listaUsuariosCompartida);
         }
     }
 }

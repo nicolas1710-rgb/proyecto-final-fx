@@ -4,13 +4,12 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="604.0" prefWidth="789.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.proyectofx.proyectofxapp.ViewController.PanelAdminView">
+<AnchorPane prefHeight="600.0" prefWidth="789.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.proyectofx.proyectofxapp.ViewController.PanelAdminView">
 
     <children>
         <TabPane prefHeight="704.0" prefWidth="929.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
 
-                <!-- ✅ Tab Usuarios con formulario reutilizado -->
                 <Tab text="Usuarios">
                     <content>
                         <fx:include fx:id="crearUsuarioForm" source="crearUsuario.fxml" />
@@ -28,9 +27,9 @@
                     </content>
                 </Tab>
 
-                <Tab text="Reportes">
+                <Tab text="Reportes Avanzados">
                     <content>
-                        <fx:include fx:id="reporteUsuarioForm" source="reporteUsuario.fxml" />
+                        <fx:include fx:id="reportesAvanzadosForm" source="ReportesAvanzados.fxml" />
                     </content>
                 </Tab>
 

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="925.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.proyectofx.proyectofxapp.ViewController.IngresosPorMembresiView">
+   <children>
+      <Separator layoutY="124.0" prefHeight="13.0" prefWidth="925.0" />
+      <Text fill="WHITE" layoutX="155.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INGRESOS POR MEMBRESIA">
+         <effect>
+            <Bloom />
+         </effect>
+         <font>
+            <Font name="SimSun" size="56.0" />
+         </font>
+      </Text>
+      <TableView fx:id="tableIngresos" layoutX="7.0" layoutY="225.0" prefHeight="168.0" prefWidth="913.0">
+        <columns>
+          <TableColumn fx:id="tcMembresias" prefWidth="75.0" text="Membresias" />
+          <TableColumn fx:id="tcIngresos" prefWidth="75.0" text="Ingresos" />
+            <TableColumn fx:id="tcUsuarios" prefWidth="75.0" text="Usuarios" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <ImageView fitHeight="232.0" fitWidth="140.0" layoutX="780.0" layoutY="-28.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@6412e10a-1915-4ad6-a9d0-1512e2b30163.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

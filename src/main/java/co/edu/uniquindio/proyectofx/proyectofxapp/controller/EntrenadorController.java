@@ -6,7 +6,7 @@ import co.edu.uniquindio.proyectofx.proyectofxapp.model.*;
 import java.util.List;
 
 public class EntrenadorController {
-    static ModelFactory modelFactory;
+    private static ModelFactory modelFactory;
 
 
     public EntrenadorController() {
