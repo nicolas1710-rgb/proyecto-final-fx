@@ -16,6 +16,7 @@ import java.util.Locale;
 public class ValidacionUsuarioView {
 
     private ObservableList<Usuarios> listaUsuarios = FXCollections.observableArrayList();
+    private boolean isInitialized = false;
 
     @FXML
     private TableColumn<Usuarios, String> tcClase;
@@ -42,43 +43,43 @@ public class ValidacionUsuarioView {
 
     @FXML
     void initialize() {
-        // La vista ahora se inicializa vacía y espera los datos.
-        initDataBinding();
-        tableUsuario.setItems(listaUsuarios); // Conecta la tabla a la lista (aún vacía)
+        // La inicialización crítica se mueve a setListaUsuarios
+    }
 
+    /**
+     * Este método es la nueva entrada de datos.
+     * Se encarga de la inicialización la primera vez que se llama.
+     */
+    public void setListaUsuarios(ObservableList<Usuarios> listaCompartida) {
+        // Asegurarse de que la configuración se haga solo una vez
+        if (!isInitialized) {
+            this.listaUsuarios = listaCompartida;
+            tableUsuario.setItems(this.listaUsuarios);
+            initDataBinding();
+            setupSearchListener();
+            isInitialized = true;
+        }
+    }
+
+    private void setupSearchListener() {
         txID.textProperty().addListener((observable, oldValue, newValue) -> {
             buscarUsuarioPorTexto(newValue);
         });
     }
 
-    /**
-     * Este método es la nueva entrada de datos para este controlador.
-     * El controlador "padre" le pasará la lista compartida aquí.
-     */
-    public void setListaUsuarios(ObservableList<Usuarios> listaCompartida) {
-        this.listaUsuarios.setAll(listaCompartida); // Copia todos los items de la lista compartida
-
-        // Añadimos un listener para que si la lista compartida cambia, esta también se actualice.
-        listaCompartida.addListener((javafx.collections.ListChangeListener.Change<? extends Usuarios> c) -> {
-            this.listaUsuarios.setAll(listaCompartida);
-            buscarUsuarioPorTexto(txID.getText()); // Re-aplica el filtro
-        });
-    }
-
     private void buscarUsuarioPorTexto(String texto) {
         if (texto == null || texto.isEmpty()) {
-            tableUsuario.setItems(listaUsuarios); // Muestra todos los usuarios de su lista local
+            tableUsuario.setItems(listaUsuarios); // Muestra la lista completa
             return;
         }
 
         ObservableList<Usuarios> resultado = FXCollections.observableArrayList();
         for (Usuarios u : listaUsuarios) {
-            if (String.valueOf(u.getIdentificacion()).equals(texto)) {
+            if (String.valueOf(u.getIdentificacion()).contains(texto)) {
                 resultado.add(u);
-                break;
             }
         }
-        tableUsuario.setItems(resultado);
+        tableUsuario.setItems(resultado); // Muestra solo los resultados
     }
 
     private void initDataBinding() {

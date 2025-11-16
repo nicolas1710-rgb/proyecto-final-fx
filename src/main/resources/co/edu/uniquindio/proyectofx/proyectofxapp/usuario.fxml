@@ -23,7 +23,7 @@
                 </Tab>
                 <Tab text="Validacion">
                     <content>
-                        <fx:include fx:id="ValidarClases" source="ValidacionUsuario.fxml" />
+                        <fx:include fx:id="validarClases" source="ValidacionUsuario.fxml" />
                     </content>
                 </Tab>
                 <Tab text="Reportes">

@@ -31,7 +31,7 @@
             <Image url="@ChatGPT Image 1 nov 2025, 17_36_21.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnRecepcionista" layoutX="177.0" layoutY="146.0" mnemonicParsing="false" onAction="#ejecutarAccion" prefHeight="39.0" prefWidth="109.0" text="Recepcionista" textOverrun="LEADING_ELLIPSIS">
+      <Button fx:id="btnRecepcionista" layoutX="160.0" layoutY="145.0" mnemonicParsing="false" onAction="#ejecutarAccion" prefHeight="39.0" prefWidth="109.0" text="Recepcionista" textOverrun="LEADING_ELLIPSIS">
          <font>
             <Font name="Times New Roman Bold" size="16.0" />
          </font>
@@ -39,11 +39,7 @@
             <Cursor fx:constant="NONE" />
          </cursor>
       </Button>
-      <Button fx:id="btnUsuario" layoutX="526.0" layoutY="147.0" mnemonicParsing="false" onAction="#ejecutarAccion" prefHeight="26.0" prefWidth="87.0" text="Usuario">
-         <font>
-            <Font size="7.0" />
-         </font></Button>
-      <Button fx:id="btnAdministrador" layoutX="359.0" layoutY="129.0" mnemonicParsing="false" onAction="#ejecutarAccion" text="Administrador">
+      <Button fx:id="btnAdministrador" layoutX="539.0" layoutY="146.0" mnemonicParsing="false" onAction="#ejecutarAccion" text="Administrador">
          <font>
             <Font size="8.0" />
          </font></Button>

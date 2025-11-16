@@ -5,7 +5,6 @@ import co.edu.uniquindio.proyectofx.proyectofxapp.model.Usuarios;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.layout.AnchorPane;
 
 public class UsuarioViewController {
 
@@ -13,20 +12,17 @@ public class UsuarioViewController {
     private UsuarioController usuarioController;
 
     @FXML
-    private AnchorPane crearUsuarioForm;
-    @FXML
     private crearUsuarioViewController crearUsuarioFormController;
 
-    @FXML
-    private AnchorPane reservaClasesForm;
     @FXML
     private reservaClasesView reservaClasesFormController;
 
     @FXML
     private ReportesViewController reportesFormController;
 
+
     @FXML
-    private ValidacionUsuarioView validacionUsuarioController; // fx:id del include + "Controller"
+    private ValidacionUsuarioView validarClasesController; 
 
 
     @FXML
@@ -48,9 +44,10 @@ public class UsuarioViewController {
             reportesFormController.setListaUsuarios(listaUsuariosCompartida);
         }
 
-        // Conectar la vista de validación
-        if (validacionUsuarioController != null) {
-            validacionUsuarioController.setListaUsuarios(listaUsuariosCompartida);
+        if (validarClasesController != null) {
+            validarClasesController.setListaUsuarios(listaUsuariosCompartida);
+        } else {
+            System.err.println("Error Crítico: El controlador para ValidacionUsuarioView no fue inyectado. Revisa el fx:id en usuario.fxml.");
         }
 
         System.out.println("Controladores y lista compartida conectados correctamente ✅");
