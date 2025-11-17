@@ -95,3 +95,13 @@
     -fx-background-color: #d4af37;
     -fx-background-radius: 5;
 }
+
+/* === REGLA PARA TEXTFIELDS NO EDITABLES === */
+.text-field:disabled, .text-field:editable:false {
+    -fx-text-fill: white;
+}
+
+/* Regla específica para los campos con el fondo gris oscuro */
+.text-field[style*="-fx-background-color: #333;"] {
+    -fx-text-fill: white;
+}

@@ -26,7 +26,7 @@
                     <children>
                         <ImageView fitHeight="232.0" fitWidth="162.0" layoutX="775.0" layoutY="-34.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@6412e10a-1915-4ad6-a9d0-1512e2b30163.png" />
+                                <Image url="@Logo.png" />
                             </image>
                         </ImageView>
                         <Button fx:id="btnAgregarUsuario" layoutX="248.0" layoutY="338.0" mnemonicParsing="false" onAction="#onAgregarUsuario" text="AGREGAR USUARIO">

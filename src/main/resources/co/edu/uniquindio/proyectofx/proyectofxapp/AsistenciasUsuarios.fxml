@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="925.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.proyectofx.proyectofxapp.ViewController.AsistenciasUsuariosView">
+   <children>
+      <TextArea fx:id="txtAreaAsistencias" layoutX="27.0" layoutY="129.0" prefHeight="463.0" prefWidth="881.0" />
+      <Separator layoutY="80.0" prefHeight="12.0" prefWidth="925.0" />
+      <Text fill="WHITE" layoutX="35.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REPORTE ASISTENCIAS">
+         <font>
+            <Font name="SimSun" size="53.0" />
+         </font>
+         <effect>
+            <Bloom />
+         </effect>
+      </Text>
+   </children>
+</AnchorPane>

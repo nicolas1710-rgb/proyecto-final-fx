@@ -7,7 +7,9 @@ module co.edu.uniquindio.proyectofx.proyectofxapp {
     requires javafx.graphics;
 
     requires javafx.base;
-
+    requires kernel;
+    requires layout;
+    requires io;
 
 
     opens co.edu.uniquindio.proyectofx.proyectofxapp to javafx.fxml;

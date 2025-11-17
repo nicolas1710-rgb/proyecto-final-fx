@@ -11,14 +11,20 @@ public class Gimnasio {
     private List<Recepcionista> listaRecepcionistas;
     private List<Entrenador> listaEntrenadores;
     private List<Clases> listaClases;
+    private List<Asistencia> listaAsistencias; // Lista añadida
 
     public Gimnasio() {
         this.listaUsuarios = new ArrayList<>();
         this.listaRecepcionistas = new ArrayList<>();
         this.listaEntrenadores = new ArrayList<>();
         this.listaClases = new ArrayList<>();
+        this.listaAsistencias = new ArrayList<>(); // Inicializar lista
     }
 
+    // Getter para la nueva lista
+    public List<Asistencia> getListaAsistencias() {
+        return listaAsistencias;
+    }
 
     public Administrador getAdministrador() {
         return administrador;
@@ -154,7 +160,7 @@ public class Gimnasio {
         }
     }
 
-    private Entrenador obtenerEntrenador(long identificacion){
+    public Entrenador obtenerEntrenador(long identificacion){
         Entrenador entrenadorEncontrado=null;
         for(Entrenador entrenador: getListaEntrenadores()){
             if(entrenador.getIdentificacion()==identificacion){

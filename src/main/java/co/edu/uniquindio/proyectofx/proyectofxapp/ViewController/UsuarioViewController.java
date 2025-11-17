@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyectofx.proyectofxapp.ViewController;
 
+import co.edu.uniquindio.proyectofx.proyectofxapp.controller.EntrenadorController;
 import co.edu.uniquindio.proyectofx.proyectofxapp.controller.UsuarioController;
 import co.edu.uniquindio.proyectofx.proyectofxapp.model.Usuarios;
 import javafx.collections.FXCollections;
@@ -10,6 +11,7 @@ public class UsuarioViewController {
 
     private ObservableList<Usuarios> listaUsuariosCompartida = FXCollections.observableArrayList();
     private UsuarioController usuarioController;
+    private EntrenadorController entrenadorController; // Controlador para entrenadores
 
     @FXML
     private crearUsuarioViewController crearUsuarioFormController;
@@ -20,7 +22,6 @@ public class UsuarioViewController {
     @FXML
     private ReportesViewController reportesFormController;
 
-
     @FXML
     private ValidacionUsuarioView validarClasesController; 
 
@@ -28,6 +29,7 @@ public class UsuarioViewController {
     @FXML
     public void initialize() {
         usuarioController = new UsuarioController();
+        entrenadorController = new EntrenadorController(); // Inicializar el nuevo controlador
         listaUsuariosCompartida.addAll(usuarioController.obtenerUsuarios());
 
         if (crearUsuarioFormController != null) {
@@ -37,6 +39,7 @@ public class UsuarioViewController {
 
         if (reservaClasesFormController != null) {
             reservaClasesFormController.setUsuarioController(usuarioController);
+            reservaClasesFormController.setEntrenadorController(entrenadorController); // Pasar el controlador de entrenadores
             reservaClasesFormController.setListaUsuarios(listaUsuariosCompartida);
         }
 
@@ -46,8 +49,6 @@ public class UsuarioViewController {
 
         if (validarClasesController != null) {
             validarClasesController.setListaUsuarios(listaUsuariosCompartida);
-        } else {
-            System.err.println("Error Crítico: El controlador para ValidacionUsuarioView no fue inyectado. Revisa el fx:id en usuario.fxml.");
         }
 
         System.out.println("Controladores y lista compartida conectados correctamente ✅");

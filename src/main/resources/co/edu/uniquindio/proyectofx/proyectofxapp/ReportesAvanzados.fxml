@@ -8,17 +8,17 @@
    <children>
       <TabPane prefHeight="600.0" prefWidth="925.0" style="-fx-background-color: black;" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-            <Tab text="Asistencias">
+            <Tab text="Asistencias por Usuario">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <fx:include fx:id="asistenciasUsuariosForm" source="AsistenciasUsuarios.fxml" />
               </content>
             </Tab>
-          <Tab text="IngresosPorMembresia">
+          <Tab text="Ingresos por Membresia">
             <content>
                 <fx:include fx:id="ingresosPorMembresiaForm" source="IngresosPorMembresia.fxml" />
             </content>
           </Tab>
-          <Tab text="ClasesPopulares">
+          <Tab text="Clases Populares">
             <content>
                 <fx:include fx:id="clasesMasReservadasForm" source="ClasesMasReservadas.fxml" />
             </content>

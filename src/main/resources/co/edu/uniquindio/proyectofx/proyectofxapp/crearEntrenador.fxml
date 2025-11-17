@@ -21,10 +21,10 @@
                <children>
                   <ImageView fitHeight="232.0" fitWidth="162.0" layoutX="775.0" layoutY="-34.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@6412e10a-1915-4ad6-a9d0-1512e2b30163.png" />
+                        <Image url="@Logo.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="btnAgregarUsuario" layoutX="248.0" layoutY="338.0" mnemonicParsing="false" onAction="#onAgregarUsuario" text="AGREGAR USUARIO">
+                  <Button fx:id="btnAgregar" layoutX="248.0" layoutY="338.0" mnemonicParsing="false" onAction="#onAgregar" text="AGREGAR">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -78,12 +78,12 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
-                  <Button fx:id="btnEliminar" layoutX="429.0" layoutY="338.0" mnemonicParsing="false" onAction="#EliminarUsuario" text="ELIMINAR">
+                  <Button fx:id="btnEliminar" layoutX="429.0" layoutY="338.0" mnemonicParsing="false" onAction="#onEliminar" text="ELIMINAR">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnActualizar" layoutX="551.0" layoutY="338.0" mnemonicParsing="false" onAction="#ActualizarUsuario" text="ACTUALIZAR">
+                  <Button fx:id="btnActualizar" layoutX="551.0" layoutY="338.0" mnemonicParsing="false" onAction="#onActualizar" text="ACTUALIZAR">
                      <font>
                         <Font size="14.0" />
                      </font>
