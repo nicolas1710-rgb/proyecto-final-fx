@@ -46,12 +46,10 @@ public class ValidacionUsuarioView {
         // La inicialización crítica se mueve a setListaUsuarios
     }
 
-    /**
-     * Este método es la nueva entrada de datos.
-     * Se encarga de la inicialización la primera vez que se llama.
-     */
+
+
     public void setListaUsuarios(ObservableList<Usuarios> listaCompartida) {
-        // Asegurarse de que la configuración se haga solo una vez
+
         if (!isInitialized) {
             this.listaUsuarios = listaCompartida;
             tableUsuario.setItems(this.listaUsuarios);

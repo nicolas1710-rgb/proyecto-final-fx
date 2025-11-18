@@ -42,10 +42,6 @@ public class Usuarios {
     public TipoUsuario getTipoUsuario() { return tipoUsuario; }
     public void setTipoUsuario(TipoUsuario tipoUsuario) { this.tipoUsuario = tipoUsuario; }
 
-    /**
-     * Calcula la fecha de fin de la membresía.
-     * @return la fecha de fin, o null si no se puede calcular.
-     */
     public LocalDate getFechaFinMembresia() {
         if (this.fechaInicioMembresia == null || this.duracion == null) {
             return null;
@@ -53,10 +49,6 @@ public class Usuarios {
         return this.fechaInicioMembresia.plus(this.duracion.getPeriodo());
     }
 
-    /**
-     * Verifica si la membresía del usuario está activa en la fecha actual.
-     * @return true si está activa, false en caso contrario.
-     */
     public boolean isActivo() {
         LocalDate fechaFin = getFechaFinMembresia();
         if (fechaFin == null) {
@@ -65,10 +57,7 @@ public class Usuarios {
         return !LocalDate.now().isAfter(fechaFin);
     }
 
-    /**
-     * Calcula el precio final de la membresía aplicando el descuento del tipo de usuario.
-     * @return el precio final, o 0.0 si no se puede calcular.
-     */
+
     public double getPrecioFinal() {
         if (membresia == null || duracion == null || tipoUsuario == null) {
             return 0.0;

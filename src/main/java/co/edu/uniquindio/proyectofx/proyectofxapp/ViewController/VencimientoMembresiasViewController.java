@@ -39,16 +39,11 @@ public class VencimientoMembresiasViewController {
     public void setListaUsuarios(ObservableList<Usuarios> listaUsuarios) {
         this.listaUsuarios = listaUsuarios;
 
-        // 1. Envolver la lista en una FilteredList
         listaFiltrada = new FilteredList<>(this.listaUsuarios);
-
-        // 2. Asignar la lista filtrada a la tabla
         tableVencimiento.setItems(listaFiltrada);
-
-        // 3. Establecer el predicado (el filtro)
         listaFiltrada.setPredicate(usuario -> {
             if (usuario.getFechaFinMembresia() == null) {
-                return false; // No se puede determinar si no hay fecha de fin
+                return false;
             }
             LocalDate hoy = LocalDate.now();
             LocalDate fechaFin = usuario.getFechaFinMembresia();
@@ -57,7 +52,7 @@ public class VencimientoMembresiasViewController {
             return fechaFin.isBefore(hoy) || ChronoUnit.DAYS.between(hoy, fechaFin) <= 30;
         });
 
-        // 4. Configurar las columnas de la tabla
+
         initDataBinding();
     }
 

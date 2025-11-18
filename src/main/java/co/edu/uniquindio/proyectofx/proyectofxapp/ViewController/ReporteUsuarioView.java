@@ -40,26 +40,17 @@ public class ReporteUsuarioView {
 
     @FXML
     public void initialize() {
-        // Este método se llama después de que los campos @FXML han sido inyectados.
-        // La lista de usuarios aún no está disponible aquí.
     }
 
     public void setListaUsuarios(ObservableList<Usuarios> listaUsuarios) {
         this.listaUsuarios = listaUsuarios;
 
-        // 1. Envolver la lista compartida en una FilteredList
+
         listaUsuariosActivos = new FilteredList<>(this.listaUsuarios);
-
-        // 2. Establecer el predicado para filtrar solo usuarios activos
         listaUsuariosActivos.setPredicate(Usuarios::isActivo);
-
-        // 3. Asignar la lista filtrada a la tabla
         tableUsuario.setItems(listaUsuariosActivos);
-
-        // 4. Vincular el contador de texto al tamaño de la lista filtrada
         txtCambioUsuarios.textProperty().bind(Bindings.size(listaUsuariosActivos).asString());
 
-        // 5. Inicializar las columnas de la tabla
         initDataBinding();
     }
 
