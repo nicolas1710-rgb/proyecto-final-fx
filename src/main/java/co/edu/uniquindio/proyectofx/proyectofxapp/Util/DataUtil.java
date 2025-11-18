@@ -84,7 +84,7 @@ public class DataUtil {
         gimnasio.getListaAsistencias().add(new Asistencia(100, LocalDateTime.now().minusDays(1))); // Pedro
 
         // --- Entrenadores ---
-        gimnasio.getListaEntrenadores().add(new Entrenador(YOGA, 1200000, "Nicolás", 1097860571, 27, 3024587763L));
+        gimnasio.getListaEntrenadores().add(new Entrenador(YOGA, 1200000, "Nicolás", 321, 27, 3024587763L));
         gimnasio.getListaEntrenadores().add(new Entrenador( CROSSFIT,1300000, "Cristian", 1097561274, 39, 3113171910L));
         gimnasio.getListaEntrenadores().add(new Entrenador(BOXEO, 1500000, "Santiago", 1059340562, 22, 3115135638L));
 
