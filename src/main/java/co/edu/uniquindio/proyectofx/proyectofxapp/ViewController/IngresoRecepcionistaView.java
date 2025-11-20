@@ -35,7 +35,6 @@ public class IngresoRecepcionistaView {
     @FXML
     void volverAPantallaPrincipal(ActionEvent event) {
         try {
-            // Cargar pantalla principal
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/proyectofx/proyectofxapp/PantallaPrincipal.fxml"));
             Parent root = loader.load();
 
@@ -44,7 +43,7 @@ public class IngresoRecepcionistaView {
             stage.setScene(new Scene(root));
             stage.show();
 
-            // Cerrar ventana actual
+
             Stage currentStage = (Stage) ((Button) event.getSource()).getScene().getWindow();
             currentStage.close();
 
@@ -98,7 +97,7 @@ public class IngresoRecepcionistaView {
         stage.setScene(new Scene(root));
         stage.show();
 
-        // Cierra la ventana de login
+
         Stage myStage = (Stage) this.TxtUsuarioRecep.getScene().getWindow();
         myStage.close();
     }

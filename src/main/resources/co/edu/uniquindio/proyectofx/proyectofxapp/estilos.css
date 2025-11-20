@@ -81,7 +81,6 @@
     -fx-text-fill: #1a1a1a; /* Texto oscuro cuando está seleccionado */
 }
 
-/* Para valores null o vacíos, necesitarías manejarlo desde el código Java */
 .table-view .table-row-cell:empty {
     -fx-background-color: #1a1a1a;
 }
@@ -101,7 +100,32 @@
     -fx-text-fill: white;
 }
 
-/* Regla específica para los campos con el fondo gris oscuro */
 .text-field[style*="-fx-background-color: #333;"] {
     -fx-text-fill: white;
+}
+
+/* === ESTILOS PARA TEXTAREA === */
+.text-area {
+    -fx-background-color: #1a1a1a;
+    -fx-border-color: #d4af37;
+    -fx-border-width: 2;
+    -fx-border-radius: 8;
+    -fx-background-insets: 0;
+    -fx-background-radius: 8;
+}
+
+.text-area .content {
+    -fx-background-color: #242424; /* Fondo del área de texto */
+    -fx-text-fill: white; /* Color del texto cambiado a blanco puro */
+    -fx-font-size: 13px;
+}
+
+.text-area .scroll-bar:vertical,
+.text-area .scroll-bar:horizontal {
+    -fx-background-color: #1a1a1a;
+}
+
+.text-area .scroll-bar .thumb {
+    -fx-background-color: #d4af37;
+    -fx-background-radius: 5;
 }

@@ -33,7 +33,6 @@ public class VencimientoMembresiasViewController {
 
     @FXML
     public void initialize() {
-        // La configuración se hará cuando se inyecte la lista
     }
 
     public void setListaUsuarios(ObservableList<Usuarios> listaUsuarios) {
@@ -48,7 +47,7 @@ public class VencimientoMembresiasViewController {
             LocalDate hoy = LocalDate.now();
             LocalDate fechaFin = usuario.getFechaFinMembresia();
 
-            // Condición: La membresía ya expiró O expira en los próximos 30 días.
+
             return fechaFin.isBefore(hoy) || ChronoUnit.DAYS.between(hoy, fechaFin) <= 30;
         });
 

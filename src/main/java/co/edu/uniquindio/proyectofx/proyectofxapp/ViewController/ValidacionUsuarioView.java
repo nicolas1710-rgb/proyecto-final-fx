@@ -43,7 +43,6 @@ public class ValidacionUsuarioView {
 
     @FXML
     void initialize() {
-        // La inicialización crítica se mueve a setListaUsuarios
     }
 
 

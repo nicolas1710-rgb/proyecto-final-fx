@@ -34,7 +34,7 @@ public class IngresosPorMembresiView {
 
     @FXML
     void initialize() {
-        // La configuración se disparará cuando se reciban los datos.
+
     }
 
     public void setListaUsuarios(ObservableList<Usuarios> listaUsuarios) {
@@ -57,21 +57,19 @@ public class IngresosPorMembresiView {
         tcMembresias.setCellValueFactory(cellData -> cellData.getValue().tipoMembresiaProperty());
         tcUsuarios.setCellValueFactory(cellData -> cellData.getValue().cantidadUsuariosProperty());
 
-        // --- INICIO DE LA MODIFICACIÓN ---
 
-        // 1. Crear un formateador para la moneda de Colombia (CO).
         NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(new Locale("es", "CO"));
 
         // 2. Configurar la columna de ingresos para usar el formateador.
         tcIngresos.setCellValueFactory(cellData -> {
             double total = cellData.getValue().getIngresosTotales();
-            // Convertir el número a un String con formato de moneda.
+
             String formattedTotal = currencyFormatter.format(total);
-            // Devolverlo como una propiedad de String simple.
+
             return new SimpleStringProperty(formattedTotal);
         });
 
-        // --- FIN DE LA MODIFICACIÓN ---
+
     }
 
     private void actualizarReporte() {
